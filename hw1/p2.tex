@@ -1,0 +1,58 @@
+We still take the optimization problem (P) in Exercise 1.1 as an example. Its Dual is
+
+\[
+\begin{array}{rrcl}
+ \min & y'b  &      &   \\
+      &  y'A  &   \leq  & c'~,
+\end{array}
+\tag{D}
+\]
+
+where $y$ is a vector of variables in $ \mathbb{R}^2$. Let 
+$y = 
+\left(
+\begin{array}{cc}
+ y_1 & y_2 
+\end{array}
+\right)'$. (D) is equavalent to 
+
+\[
+\begin{array}{rrcl}
+ \min & 10y_1+150y_2  &      &   \\
+      &  y_1+10y_2  &   \leq  & -100~; \\
+      & y_1 + 20y_2 & \leq & -300~; \\
+      & y_1 & \geq & 0~;\\
+      & y_2 & \leq & 0~.
+\end{array}
+\]
+
+Weak Duality Theorem gives that if $\hat{x}$ is feasible in (P) and $\hat{y}$ is feasible in (D), then $c'\hat{x} \geq \hat{y}'b$, as $c'\hat{x} \geq \hat{y}'A\hat{x} = \hat{y}'b$. In our example,
+
+$$c'\hat{x} = -100\hat{x}_1 - 300 \hat{x}_2~,$$
+$$\hat{y}'b = 10\hat{y}_1 + 150\hat{y}_2,$$
+
+So
+
+$$-100\hat{x}_1 - 300 \hat{x}_2 \geq 10\hat{y}_1 + 150\hat{y}_2.$$
+
+Take \
+
+$$\hat{x} = 
+\left(
+\begin{array}{c}
+ 6 \\
+ 4 \\
+ 0 \\
+ 0 \\
+\end{array}
+\right),
+\hat{y} =
+\left(
+\begin{array}{c}
+ 10 \\
+ -20 \\
+\end{array}
+\right),
+$$
+
+we can see that $c'\hat{x} = -1800$, $\hat{y}'b = -2900$ and $c'\hat{x} \geq \hat{y}'b$.
