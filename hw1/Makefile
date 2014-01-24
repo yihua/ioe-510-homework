@@ -20,4 +20,4 @@ hw1.pdf: hw1.ps
 	ps2pdf14 hw1.ps hw1.pdf
 
 clean: 
-	\rm -f *.dvi *.aux *.ps *~ *.log *.blg *.bbl *.pdf
+	\rm -f *.dvi *.aux *.ps *~ *.log *.blg *.bbl
