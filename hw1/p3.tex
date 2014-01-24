@@ -1,0 +1,17 @@
+First follow the transformation to transform the constraints on every variable $x_j$ (we only consider the comparison to zero as comparison to other real number can be transformed to what we discussed):
+
+\begin{enumerate}
+\item if the constraint is in form $x_j \leq 0 $, then it is the $\leq$ form;
+\item if the constraint is in form $x_j \geq 0 $, then let $x_j^- = - x_j$. Replace $x_j$ with $x_j^-$ in the objective and all constraints. So we get $x_j^- \leq 0$;
+\item if $x_j$ is unrestricted, then replace $x_j$ with the difference of a pair of non-positive variables $x_j^+$ and $x_j^-$ in the objective and all constraints, that is $x_j^+-x_j^- = x_j$.
+\end{enumerate}
+
+After transforing the constraints on only variables, let's now consider other constrainsts:
+
+\begin{enumerate}
+\item if the constraint is in form $Ax \leq b$, then it is the $\leq$ form;
+\item if the constraint is in form $Ax \geq b$, then change it to the equivalent constraint $(-A)x \leq -b$;
+\item if the constraint is in form $Ax = b$, then first replace it with two constrants, $Ax \leq b$ and $Ax \geq b$. Then change to the $\leq$ form, $Ax \leq b$ and $(-A)x \leq -b$.
+\end{enumerate}
+
+Now we are done with all constraints and they are all in $\leq$ form.

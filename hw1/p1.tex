@@ -1,0 +1,73 @@
+Let's take the following problem as an example. Suppose Tom wants to make money and he decides to open several restaurants in the city he lives. There are two types of restaurants, Caf\'{e} which needs 10 employees each and has a profit of \$100 per day, and Mongolian barbecue which needs 20 employees each and has a profit of \$300 per day. Tom would like to open at least 10 restaurants but he only has 150 people to serve in restaurants. The goal is to maximize the profit of all restaurants. This is an optimization problem and can be formalized as follows:
+
+\[
+\begin{array}{rrcl}
+ \max & 100x_1 + 300x_2  &      &   \\
+      &  x_1 + x_2  &   \geq  & 10~; \\
+      &  10x_1 + 20x_2 & \leq & 150~; \\
+      &   x_1  & \geq & 0 ~; \\
+      &   x_2  & \geq & 0~.
+\end{array}
+\]
+
+To transform this general linear-optimization problem to one in standard form, first we change the maximum of $100x_1 + 300x_2$ to the negative of the minimum of $-100x_1 - 300x_2$. We then change inequalities to equalities: $ x_1 + x_2 \geq 10$ to $ x_1 + x_2 - t_1 = 10$, and $10x_1 + 20x_2 \leq 150$ to $10x_1 + 20x_2 + t_2  = 150 $, where $t_1,t_2\geq 0$. Now we have
+
+\[
+\begin{array}{rrcl}
+ \min & -100x_1 - 300x_2  &      &   \\
+      &  x_1 + x_2 - t_1  &   =  & 10~; \\
+      &  10x_1 + 20x_2 + t_2 & = & 150~; \\
+      &   t_1  & \geq & 0~; \\
+      &   t_2  & \geq & 0~; \\
+      &   x_1  & \geq & 0 ~; \\
+      &   x_2  & \geq & 0~,
+\end{array}
+\]
+
+which is in standard form of the following
+
+\[
+\tag{P}
+\begin{array}{rrcl}
+ \min & c'x  &      &   \\
+      &  Ax  &   =  & b~; \\
+      &   x  & \geq & \mathbf{0}~,
+\end{array}
+\]
+
+where
+
+$$
+c = 
+\left(
+  \begin{array}{c}
+    -100 \\
+    -300 \\
+    0 \\
+    0 \\
+  \end{array}
+\right),~
+A = 
+\left(
+  \begin{array}{cccc}
+    1 & 1 & -1 & 0 \\
+    10 & 20 & 0 & 1 \\
+  \end{array}
+\right),~
+b =
+\left(
+  \begin{array}{c}
+    10 \\
+    150 \\
+  \end{array}
+\right),~
+x =
+\left(
+  \begin{array}{c}
+    x_1 \\
+    x_2 \\
+    t_1 \\
+    t_2 \\
+  \end{array}
+\right).
+$$
