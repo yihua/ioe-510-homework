@@ -13,7 +13,11 @@ After transforing the constraints on only variables, let's now consider other co
 \begin{enumerate}
 \item if the constraint is in form $Ax \leq b$, then it is the $\leq$ form;
 \item if the constraint is in form $Ax \geq b$, then change it to the equivalent constraint $(-A)x \leq -b$;
-\item if the constraint is in form $Ax = b$, then first replace it with two constrants, $Ax \leq b$ and $Ax \geq b$. Then change to the $\leq$ form, $Ax \leq b$ and $(-A)x \leq -b$.
+\item if the constraint is in form $Ax = b$, then replace this with $Ax + It \leq b $, where $t \leq \mathbf{0}$. Let $x^* = \left(
+\begin{array}{cc}
+ x' & t' 
+\end{array}
+\right)'$, replace $x$ with $x^*$ in other constraints.
 \end{enumerate}
 
 Now we are done with all constraints and they are all in $\leq$ form.
