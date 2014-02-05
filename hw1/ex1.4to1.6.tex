@@ -1,18 +1,272 @@
 \section{Exercise 1.4 $m+1$ inequalities}
 \textbf{Problem:} Prove that the system of $m$ equations in $n$ variables $Ax=b$ is equivalent to the system $Ax\leq b$ augmented by only $one$ additional linear inequality -- that is, a total of only m+1 inequalities.
-The \emph{characteristic polynomial} $\chi(\lambda)$ of the
-$3 \times 3$~matrix
-\[ \left( \begin{array}{ccc}
-a & b & c \\
-d & e & f \\
-g & h & i \end{array} \right)\] 
-is given by the formula
+
+\textbf{Proof:}
+
+Let $A=\left( \begin{array}{c} a_{1} \\ a_{2} \\ ... \\ a_{m} \end{array}\right) $ where each element is a $1\times n$ vector, and $b=\left( \begin{array}{c} b_{1} \\ b_{2} \\ ... \\ b_{m}  \end{array} \right) $. Then we rewrite $Ax=b$ to the form of $m$ equations as follows,
 \begin{equation}
-\chi(\lambda) = \left| \begin{array}{ccc}
-\lambda - a & -b & -c \\
--d & \lambda - e & -f \\
--g & -h & \lambda - i \end{array} \right|
+\label{eq: axeqb}
+ \left\{ \begin{array}{c}
+a_{1}x=b_{1} \\
+a_{1}x=b_{1} \\
+...\\
+a_{m}x=b_{m}
+\end{array} \right.
 \end{equation}
+
+We add one constraint $\sum\limits_{i=1}^m a_{i}x \geq \sum\limits_{i=1}^m b_{i}$ to $Ax\leq b$, and construct a system with $m+1$ inequalities as follows,
+\begin{equation}
+\label{eq: axleqb}
+ \left\{ \begin{array}{c}
+a_{1}x\leq b_{1} \\
+a_{2}x\leq b_{2} \\
+...\\
+a_{m}x \leq b_{m}\\
+\sum\limits_{i=1}^m a_{i}x \geq \sum\limits_{i=1}^m b_{i}
+\end{array} \right.
+\end{equation}
+ 
+We claim that (\ref{eq: axeqb}) is equivalent to (\ref{eq: axleqb}). To prove that, we will show any feasible solution $\widehat{x}$ for (\ref{eq: axeqb}) is also a feasible solution for (\ref{eq: axleqb}), and vice versa.
+
+``$\Rightarrow $'': if $\widehat{x}$ is a feasible solution for (\ref{eq: axeqb}), then it is also a feasible solution for (\ref{eq: axleqb}).
+
+$\because$ $\widehat{x}$ is a feasible solution for (\ref{eq: axeqb})
+
+$\therefore$  $a_{i}\widehat{x}=b_{i}, i\in 1...m$, and $\sum\limits_{i=1}^m a_{i}x=\sum\limits_{i=1}^m b_{i}$
+
+$\therefore$  $\widehat{x}$ also satisfy $a_{i}\widehat{x}\leq b_{i}, i\in 1...m$ and $\sum\limits_{i=1}^m a_{i}x\geq \sum\limits_{i=1}^m b_{i}$
+
+$\therefore$  $\widehat{x}$ is also a feasible solution for (\ref{eq: axleqb})
+\\
+
+``$\Leftarrow $'': if $\widehat{x}$ is a feasible solution for (\ref{eq: axleqb}), then it is also a feasible solution for (\ref{eq: axeqb}).
+
+$\because$ $\widehat{x}$ is a feasible solution for (\ref{eq: axleqb})
+
+$\therefore$  $a_{i}\widehat{x}\leq b_{i}, i\in 1...m$, and $\sum\limits_{i=1}^m a_{i}x\geq \sum\limits_{i=1}^m b_{i}$
+
+We continue the proof by contradiction. Assume one of the equalities does not hold, i.e.  $a_{j}\widehat{x}<b_{j}$ for $j$, $j\in 1...m$.
+
+$\because$ $a_{j}\widehat{x}<b_{j}$
+
+$\therefore$  $\sum\limits_{i=1}^m a_{i}\widehat{x}$
+
+$ = \sum\limits_{i=1}^{j-1} a_{i}\widehat{x} + a_{j}\widehat{x} + \sum\limits_{i=j+1}^{m} a_{i}\widehat{x}$
+
+$ \leq \sum\limits_{i=1}^{j-1} b_{i} + a_{j}\widehat{x} + \sum\limits_{i=j+1}^{m} b_{i}$
+
+$ <  \sum\limits_{i=1}^{j-1} b_{i} + b_{j} + \sum\limits_{i=j+1}^{m} b_{i}$
+
+$ = \sum\limits_{i=1}^m b_{i}$
+
+$\therefore$ contradict to $\sum\limits_{i=1}^m a_{i}\widehat{x} \geq \sum\limits_{i=1}^m b_{i}$ in  (\ref{eq: axleqb})
+
+$\therefore$ all of the equalities for (\ref{eq: axeqb})should hold if $\widehat{x}$ is a feasible solution for (\ref{eq: axleqb}). 
+
+$\therefore$ $\widehat{x}$ is also a feasible solution for (\ref{eq: axeqb}) 
+\begin{flushright} $\blacksquare$ \end{flushright}
+
 \section{Exercise 1.5 Weak Duality for another form}
+\textbf{Problem:} Give and prove a Weak Duality Theorem for 
+\begin{equation}
+\label{eq: p15}
+  \begin{array}{lrcll}
+    \max 
+    & \multicolumn{4}{l}{c'x} \\
+    \text{s.t.}
+    & Ax\leq b \\
+    & x \geq 0
+  \end{array}
+\end{equation}
+
+\textbf{Solution:}
+
+The dual of (\ref{eq: p15}) is 
+\begin{equation}
+\label{eq: d15}
+  \begin{array}{lrcll}
+    \min
+    & \multicolumn{4}{l}{y'b} \\
+    \text{s.t.}
+    & y'A\geq c' \\
+    & y' \geq 0
+  \end{array}
+\end{equation}
+
+We give the Weak Duality Theorem for (\ref{eq: p15}) as follows,
+\begin{thm}
+If $\widehat{x}$ is feasible in \ref{eq: p15} and $\widehat{y}$ is feasible in (\ref{eq: d15}), then $c'\widehat{x}\leq \widehat{y}'b$.
+\end{thm}
+
+Proof:
+
+We first transform (\ref{eq: p15}) to standard form as follows,
+\begin{equation}
+\label{eq: ps15}
+  \begin{array}{lrcll}
+    \min
+    & \multicolumn{4}{l}{c_{1}'x_{1}} \\
+    \text{s.t.}
+    & A_{1}x_{1}= b \\
+    & x_{1} \geq 0
+  \end{array}
+\end{equation}
+
+In (\ref{eq: ps15}), $x_{1}=  \left( \begin{array}{c} x \\ t \end{array}\right) $,  $c_{1}'= \left( \begin{array}{cc} -c' & 0 \end{array}\right) $, and $A_{1} = \left( \begin{array}{cc} A & I \end{array}\right)$.
+
+The dual of (\ref{eq: ps15}) is
+\begin{equation}
+\label{eq: ds15}
+  \begin{array}{lrcll}
+    \max
+    & \multicolumn{4}{l}{y_{1}'b} \\
+    \text{s.t.}
+    & y_{1}'A_{1}\leq c_{1}'
+  \end{array}
+\end{equation}
+In (\ref{eq: ds15}), 
+
+$\because$ $y_{1}'A_{1}\leq c_{1}'$
+
+$\therefore$ $y_{1}' \left( \begin{array}{cc} A & I \end{array}\right) \leq \left( \begin{array}{cc} -c' & 0 \end{array}\right)$
+
+$\therefore$ $y_{1}'A\leq -c'$ and $y_{1}' \leq 0$
+
+let $y_{1}'=-y_{2}'$, then (\ref{eq: ds15}) becomes
+\begin{equation}
+\label{eq: ds115}
+  \begin{array}{lrcll}
+    \max
+    & \multicolumn{4}{l}{-y_{2}'b} \\
+    \text{s.t.}
+    & -y_{2}'A\leq -c'\\
+    & -y_{2}'\leq 0
+  \end{array}
+\end{equation}
+which is equivalent to
+\begin{equation}
+\label{eq: ds215}
+  \begin{array}{lrcll}
+    \min
+    & \multicolumn{4}{l}{y_{2}'b} \\
+    \text{s.t.}
+    & y_{2}'A\geq c'\\
+    & y_{2}'\geq 0
+  \end{array}
+\end{equation}
+
+We apply Weak Duality Theorem to primal (\ref{eq: ps15}) and dual (\ref{eq: ds15}), we have $c_{1}'\widehat{x_{1}} \geq \widehat{y_{1}}'b$, where $\widehat{x_{1}}$ is a feasible solution for (\ref{eq: ps15}) and $\widehat{y_{1}}$ is a feasible solution for (\ref{eq: ds15}).
+
+$\because$  $c_{1}'\widehat{x_{1}} \geq \widehat{y_{1}}'b$
+
+$\therefore$ $ \left( \begin{array}{cc} -c' & 0 \end{array}\right)  \left( \begin{array}{c} \widehat{x} \\ \widehat{t} \end{array}\right) \geq \widehat{y_{1}}'b$, where $\widehat{x}$ is a feasible solution for (\ref{eq: p15})
+
+$\therefore$  $ -c'\widehat{x} \geq \widehat{y_{1}}'b$, where $\widehat{x}$ is a feasible solution for (\ref{eq: p15})
+
+$\therefore$  $ c'\widehat{x} \leq -\widehat{y_{1}}'b$, where $\widehat{x}$ is a feasible solution for (\ref{eq: p15})
+
+$\therefore$  $ c'\widehat{x} \leq \widehat{y_{2}}'b$, where $\widehat{x}$ is a feasible solution for (\ref{eq: p15}) and $\widehat{y_{2}}$ is a feasible solution for (\ref{eq: ds215})
+
+$\because$  (\ref{eq: ds215}) is the same system as (\ref{eq: d15})
+
+$\therefore$ we have $ c'\widehat{x} \leq \widehat{y}'b$, where $\widehat{x}$ is a feasible solution for (\ref{eq: p15}) and $\widehat{y}$ is a feasible solution for (\ref{eq: d15})
+\begin{flushright} $\blacksquare$ \end{flushright}
+
 
 \section{Exercise 1.6 Weak Duality for a complicated form}
+\textbf{Problem:} Give and prove a Weak Duality Theorem for 
+\begin{equation}
+\label{eq: p16}
+  \begin{array}{lrcll}
+    \min
+    & \multicolumn{4}{l}{c'x+f'w} \\
+    \text{s.t.}
+    & Ax+Bw\leq b \\
+    & Dx = g\\
+    & x \geq 0, w\leq 0
+  \end{array}
+\end{equation}
+
+\textbf{Solution:}
+
+The dual of (\ref{eq: p16}) is 
+\begin{equation}
+\label{eq: d16}
+  \begin{array}{lrcll}
+    \max
+    & \multicolumn{4}{l}{y'b+\pi 'g} \\
+    \text{s.t.}
+    & y'A+\pi ' D \leq c' \\
+    & y'B \geq f' \\
+    & y' \leq 0
+  \end{array}
+\end{equation}
+
+We give the Weak Duality Theorem for (\ref{eq: p16}) as follows,
+\begin{thm}
+If $\widehat{x}$, $\widehat{w}$  is feasible in \ref{eq: p16}, and $\widehat{y}$, $\widehat{\pi}$ is feasible in (\ref{eq: d16}), then $c'\widehat{x}+f'\widehat{w} \geq \widehat{y}'b+\widehat{\pi }'g$.
+\end{thm}
+
+Proof:
+
+We first transform (\ref{eq: p16}) to standard form as follows,
+\begin{equation}
+\label{eq: ps16}
+  \begin{array}{lrcll}
+    \min
+    & \multicolumn{4}{l}{c_{1}'x_{1}} \\
+    \text{s.t.}
+    & A_{1}x_{1}= b_{1} \\
+    & x_{1} \geq 0
+  \end{array}
+\end{equation}
+
+In (\ref{eq: ps16}), $x_{1}=  \left( \begin{array}{c} x \\ -w \\ t \end{array}\right) $,  $c_{1}'= \left( \begin{array}{ccc} c' & -f' & 0 \end{array}\right) $, $A_{1} = \left( \begin{array}{ccc} A & -B & I \\ D & 0 & 0 \end{array}\right)$, and $b_{1}= \left( \begin{array}{c} b \\ g \end{array}\right)$.
+
+The dual of (\ref{eq: ps16}) is
+\begin{equation}
+\label{eq: ds16}
+  \begin{array}{lrcll}
+    \max
+    & \multicolumn{4}{l}{y_{1}'b_{1}} \\
+    \text{s.t.}
+    & y_{1}'A_{1}\leq c_{1}'
+  \end{array}
+\end{equation}
+In (\ref{eq: ds16}), let  $y_{1}'= \left( \begin{array}{cc} y_{2}' & \pi _{2}' \end{array}\right) $, then we have
+
+$\because$  $y_{1}'A_{1}\leq c_{1}'$
+
+$\therefore$ $\left( \begin{array}{cc} y_{2}' & \pi _{2}' \end{array}\right)  \left( \begin{array}{ccc} A & -B & I \\ D & 0 & 0 \end{array}\right) \leq  \left( \begin{array}{ccc} c' & -f' & 0 \end{array}\right)$
+
+$\therefore$ $y_{2}'A+\pi _{2}'D \leq c'$, $-y_{2}'B \leq -f'$, $y_{2}' \leq 0$
+
+then (\ref{eq: ds16}) becomes
+\begin{equation}
+\label{eq: ds116}
+  \begin{array}{lrcll}
+    \max
+    & \multicolumn{4}{l}{y_{2}'b+\pi _{2}'g} \\
+    \text{s.t.}
+    & y_{2}'A+\pi _{2}'D \leq c'\\
+    & y_{2}'B \geq f'\\
+    & y_{2}' \leq 0
+  \end{array}
+\end{equation}
+
+We apply Weak Duality Theorem to primal (\ref{eq: ps16}) and dual (\ref{eq: ds16}), we have $c_{1}'\widehat{x_{1}} \geq \widehat{y_{1}}'b_{1}$, where $\widehat{x_{1}}$ is a feasible solution for (\ref{eq: ps16}) and $\widehat{y_{1}}$ is a feasible solution for (\ref{eq: ds16}).
+
+$\because$  $c_{1}'\widehat{x_{1}} \geq \widehat{y_{1}}'b_{1}$
+
+$\therefore$ $\left( \begin{array}{ccc} c' & -f' & 0 \end{array}\right)  \left( \begin{array}{c} \widehat{x} \\ -\widehat{w} \\ \widehat{t} \end{array}\right)  \geq \widehat{y_{1}}'\left( \begin{array}{c} b \\ g \end{array}\right)$, where $\widehat{x}$, $\widehat{w}$ is a feasible solution for (\ref{eq: p16})
+
+$\therefore$ $c'\widehat{x}+f'\widehat{w}  \geq \widehat{y_{1}}'\left( \begin{array}{c} b \\ g \end{array}\right)$, where $\widehat{x}$, $\widehat{w}$ is a feasible solution for (\ref{eq: p16})
+
+$\therefore$ $c'\widehat{x}+f'\widehat{w}  \geq \left( \begin{array}{cc} \widehat{y_{2}}' &  \widehat{\pi _{2}}' \end{array}\right) \left( \begin{array}{c} b \\ g \end{array}\right)$, where $\widehat{x}$, $\widehat{w}$ is a feasible solution for (\ref{eq: p16}), and $\widehat{y_{2}}$, $\widehat{\pi _{2}}$ is a feasible solution for (\ref{eq: ds116})
+
+$\therefore$ $c'\widehat{x}+f'\widehat{w}  \geq \widehat{y_{2}}'b+\widehat{\pi _{2}}'g$, where $\widehat{x}$, $\widehat{w}$ is a feasible solution for (\ref{eq: p16}), and $\widehat{y_{2}}$, $\widehat{\pi _{2}}$ is a feasible solution for (\ref{eq: ds116})
+
+$\because$  (\ref{eq: ds116}) is the same system as (\ref{eq: d16})
+
+$\therefore$ we have $c'\widehat{x}+f'\widehat{w}  \geq \widehat{y}'b+\widehat{\pi }'g$, where $\widehat{x}$, $\widehat{w}$ is a feasible solution for (\ref{eq: p16}), and $\widehat{y}$, $\widehat{\pi }$ is a feasible solution for (\ref{eq: ds16})
+\begin{flushright} $\blacksquare$ \end{flushright}

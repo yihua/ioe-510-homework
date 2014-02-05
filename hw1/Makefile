@@ -1,4 +1,4 @@
-SRCS =  hw1.tex ex1.1to1.3.tex ex1.4to1.6.tex ex1.7.tex
+SRCS =  hw1.tex p1.tex p2.tex p3.tex ex1.4to1.6.tex p7.tex
 
 all: hw1.pdf 
 
@@ -20,4 +20,4 @@ hw1.pdf: hw1.ps
 	ps2pdf14 hw1.ps hw1.pdf
 
 clean: 
-	\rm -f *.dvi *.aux *.ps *~ *.log *.blg *.bbl *.pdf
+	\rm -f *.dvi *.aux *.ps *~ *.log *.blg *.bbl *.out
