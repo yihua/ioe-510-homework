@@ -1,0 +1,17 @@
+cashAfterT = 2420
+
+invest(1,1) = 10.000000;
+invest(1,2) = 0.000000;
+left 0
+invest(2,1) = 30.000000;
+invest(2,2) = 0.000000;
+left 0
+invest(3,1) = 90.000000;
+invest(3,2) = 0.000000;
+left 0
+invest(4,1) = 270.000000;
+invest(4,2) = 0.000000;
+left 0
+invest(5,1) = 810.000000;
+invest(5,2) = 0.000000;
+left 0
