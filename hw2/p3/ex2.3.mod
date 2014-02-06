@@ -22,6 +22,6 @@ sum {i in BLOODTYPES} w[i] * (sv[i] -  sum {j in BLOODTYPES} c[i,j]*x[i,j] );
 subject to flow_constraint1 {i in BLOODTYPES}: 
 sum {j in BLOODTYPES} x[i,j]*c[i,j] <= sv[i];
 
-subject to flow_constraint2 {i in BLOODTYPES}: 
-sum {j in BLOODTYPES} x[j,i]*c[j,i] = dv[i];
+subject to flow_constraint2 {j in BLOODTYPES}: 
+sum {i in BLOODTYPES} x[i,j]*c[i,j] = dv[j];
 
