@@ -1,0 +1,21 @@
+# ex2.3.run 
+#
+reset; # CLEAR FROM ANY PREVIOUS SOLVE
+
+option show_stats 1; # SET AMPL OPTION TO CONTROL OUTPUT
+option presolve 0; # COMMENT OUT TO SOLVE BIGGER MODELS
+option solver cplex; # AMPL OPTION TO CHOOSE AN AVAILABLE SOLVER
+option cplex_options 'display=2 presolve=0'; # SETTING SOLVER OPTIONS
+       # DELETING "presolve=0" MAY HELP TO SOLVE BIGGER MODELS
+
+model ex2.3.mod; # READ IN THE MODEL
+data ex2.3.dat; # READ IN THE DATA AND INSTANTIATE THE MODEL
+solve;  # PASS THE INSTANCE TO THE SOLVER
+
+display resblood > ex2.3.out; # WRITE THE OPTIMAL OBJECTIVE VALUE TO A FILE
+                      # NOTE THAT '>' DELETES THE FILE FIRST, IF IT EXISTS
+for {(i,j) in ARCS}
+  { # USING C−STYLE COMMANDS TO OUTPUT OPTIMAL SOLUTION TO FILE
+    printf "x(%i,%i) = %f\n", i, j, x[i,j] >> ex2.3.out;
+                    # NOTE THAT '>>' APPENDS TO THE FILE, IF IT EXISTS
+  };
