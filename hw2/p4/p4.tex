@@ -11,4 +11,31 @@ The objective of the problem is to minimize the start time of task $n+1$, $t_{n+
 \end{array}
 \]
 
+An example of a task-scheduling problem ($n=5$) is given in Table \ref{tab:duration}.
 
+\begin{table*}[!h]
+\centering
+\small
+\begin{tabular}{|c|c|c|c|c|c|c|c|}\hline
+
+$i$ & 0 & 1 & 2 & 3 & 4 & 5 & 6  \\\hline
+$d_i$ & 0 & 2 & 1 & 6 & 4 & 2 & 0 \\\hline
+$\Psi_i$ & $\varnothing$ & \{0\} & \{1\} & \{2\} & \{1\} & \{3,4\} & \{4,5\} \\\hline
+\end{tabular}
+\caption{Duration of each task, and precedences between tasks}
+\label{tab:duration}
+\end{table*}
+
+The model file {\tt ex2.4.mod} in {\tt AMPL} for the task-scheduling problem is as follows:
+
+\bigskip
+
+\hrule
+
+\small
+\verbatiminput{ex2.4.mod}
+\normalsize
+
+\hrule
+
+\bigskip
