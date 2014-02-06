@@ -1,1 +1,9 @@
 \section{Exercise 2.5 Investing wisely {\tt AMPL}}
+
+Let $u_{t}^k \geq 0$ be the cash allocated to investment-vehicle $k$ at the start of period $t$, $r_{t} \geq 0$ be the remaining cash that is not allocated to any investment vehicle at the start of period $t$, $w_{t} \geq 0$ be the available cash that can be allocated at the start of period $t$. The sum of the cash allocated to all investment vehicles and the remaining cash that is not allocated to any investment vehicle equals to the available cash that can be allocated at the start of period $t$, $$ \sum_{k=1}^{K} u_{t}^k + r_t = w_t,~t=1,2,...,T.$$ The available cash that can be allocated at the start of period $t$ equals to the external inflow of $p_t$ dollors plus the income from vehicle investment from prior periods and the interest from cash held over for one time period, $$p_t + r_{t-1} (1+\frac{q}{100}) + \sum_{i=1}^{t-1}\left(\sum_{k=1}^K u_{i}^kv_{i,t-1}^k\right) = w_t,~t=2,3,...,T,$$ $$p_1 = w_1.$$
+
+The objective of the problem is to maximize the cash available at the end of period $T$,
+
+$$r_{T} (1+\frac{q}{100}) + \sum_{i=1}^{T}\left(\sum_{k=1}^K u_{i}^kv_{i,T}^k\right).$$
+
+Then the problem can be formulated mathematically as
