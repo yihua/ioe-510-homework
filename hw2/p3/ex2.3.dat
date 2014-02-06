@@ -2,24 +2,24 @@ param n:=4;
 
 param sv :=  
 # i sv(i)
-  1 10 #O
-  2 10 #A
-  3 10 #B
+  1 20 #O
+  2 40 #A
+  3 30 #B
   4 10 #AB
 ;
 
 param dv :=  
 # i dv(i)
   1 5 #O
-  2 5 #A
-  3 5 #B
-  4 5 #AB
+  2 30 #A
+  3 20 #B
+  4 45 #AB
 ;
 
 param w :=
 #i w(i)
   1 4
-  2 3
+  2 2
   3 2
   4 1;
 
