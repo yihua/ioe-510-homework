@@ -10,6 +10,7 @@ Then the problem can be formulated mathematically as follows
 
 \[
 \begin{array}{rrcll}
+\tag{P5}
  \max & r_{T} (1+\frac{q}{100}) + \sum_{i=1}^{T}\left(\sum_{k=1}^K u_{i}^kv_{i,T}^k\right)  &  &   & \\
       &  \sum_{k=1}^{K} u_{t}^k + r_t & = & w_t~,  &t=1,2,...,T~; \\
       &  p_t + r_{t-1} (1+\frac{q}{100}) + \sum_{i=1}^{t-1}\left(\sum_{k=1}^K u_{i}^kv_{i,t-1}^k\right) & = & w_t~,& t=2,3,...,T~;\\
@@ -20,7 +21,7 @@ Then the problem can be formulated mathematically as follows
 \end{array}
 \]
 
-The model file {\tt ex2.5.mod} in {\tt AMPL} for the problem is as follows:
+The model file {\tt ex2.5.mod} in {\tt AMPL} for the problem P5 is as follows:
 
 \bigskip
 \hrule
