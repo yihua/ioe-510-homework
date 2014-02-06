@@ -2,7 +2,7 @@
 #
 param T integer>0;
 param k integer>0;
-param p integer>=0;
+param p >=0;
 
 set PERIODS:={1..T};
 set VEHICLES:={1..k};
