@@ -1,1 +1,14 @@
 \section{Exercise 2.2 Sparse solution for equations with {\tt AMPL}}
+\textbf{Solution:}
+To find the ``sparsest solution'' for a system $Ax=b$, we construct the 1-norm minimizing problem as follows,
+\begin{equation}
+\label{eq: sparse}
+  \begin{array}{lrcll}
+    \min
+    & \multicolumn{4}{l}{\sum_{j=1}^{n} t_j} \\
+    \text{s.t.}
+    & t_j-x_j >=0, j=1,2,...,n\\
+    & t_j+x_j >=0, j=1,2,...,n\\
+    & Ax=b 
+  \end{array}
+\end{equation}
