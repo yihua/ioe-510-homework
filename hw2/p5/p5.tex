@@ -6,4 +6,57 @@ The objective of the problem is to maximize the cash available at the end of per
 
 $$r_{T} (1+\frac{q}{100}) + \sum_{i=1}^{T}\left(\sum_{k=1}^K u_{i}^kv_{i,T}^k\right).$$
 
-Then the problem can be formulated mathematically as
+Then the problem can be formulated mathematically as follows
+
+\[
+\begin{array}{rrcll}
+ \max & r_{T} (1+\frac{q}{100}) + \sum_{i=1}^{T}\left(\sum_{k=1}^K u_{i}^kv_{i,T}^k\right)  &  &   & \\
+      &  \sum_{k=1}^{K} u_{t}^k + r_t & = & w_t~,  &t=1,2,...,T~; \\
+      &  p_t + r_{t-1} (1+\frac{q}{100}) + \sum_{i=1}^{t-1}\left(\sum_{k=1}^K u_{i}^kv_{i,t-1}^k\right) & = & w_t~,& t=2,3,...,T~;\\
+      &  p_1  & = & w_1~; & \\
+      &  u_{t}^k & \geq & 0~, & t = 1,2,...,T~,~k=1,2,...,K~;\\
+      &  r_t & \geq & 0~, & t = 1,2,...,T~; \\
+      &  w_t & \geq & 0~, & t = 1,2,...,T~.\\
+\end{array}
+\]
+
+The model file {\tt ex2.5.mod} in {\tt AMPL} for the problem is as follows:
+
+\bigskip
+\hrule
+\small
+\verbatiminput{p5/ex2.5.mod}
+\normalsize
+\hrule
+\bigskip
+
+The sample data set is in {\tt ex2.5.dat}:
+
+\bigskip
+\hrule
+\small
+\verbatiminput{p5/ex2.5.dat}
+\normalsize
+\hrule
+\bigskip
+
+Finally, we have {\tt ex2.5.run} to solve the problem in {\tt AMPL}:
+
+\bigskip
+\hrule
+\small
+\verbatiminput{p5/ex2.5.run}
+\normalsize
+\hrule
+\bigskip
+
+The output of running the problem is:
+
+\bigskip
+\hrule
+\small
+\verbatiminput{p5/ex2.5.out}
+\normalsize
+\hrule
+\bigskip
+
