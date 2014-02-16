@@ -23,7 +23,7 @@ subject to invest_constraint1 {i in PERIODS}:
 (sum {j in VEHICLES} invest[i,j] + leftinv[i]) = overallcash[i];
 
 subject to invest_constraint2 {i in 2..T}:
- (sum {j in VEHICLES} (sum{t in 1..i-1} v[j,t,i-1]*invest[t,j]) + leftinv[i-1]*(1+p/100) + inflow[i]) = overallcash[i];
+ (sum {j in VEHICLES} (sum{t in 1..i-1} v[j,t,i-1]*invest[t,j])+leftinv[i-1]*(1+p/100)+inflow[i])=overallcash[i];
 
 subject to invest_constraint3 :
  inflow[1] = overallcash[1];
