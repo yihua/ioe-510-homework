@@ -6,7 +6,7 @@ Every basic feasible ray of standard-form (P) is an extreme ray of its feasible 
 
 \textbf{Proof:}
 
-Let $\widehat{z}$ be any basic feasible ray For standard-form problem in (\ref{eq: primal}). By definition, $\widehat{z}\in \mathbb{R}^{n}$
+Let $\widehat{z}$ be any basic feasible ray For standard-form problem in (\ref{eq: primal}). 
 \begin{equation}
 \label{eq: primal}
   \begin{array}{lrcll}
@@ -17,3 +17,42 @@ Let $\widehat{z}$ be any basic feasible ray For standard-form problem in (\ref{e
     & x\geq0
   \end{array}
 \end{equation}
+
+By basic feasible ray definition, $\widehat{z}\in \mathbb{R}^{n}$, and is associate with the basic partition $\beta$, $\eta$ and a choice of nonbasic index $\eta_j$ via $\widehat{z}_{\eta}=e^j \in \mathbb{R}^{n-m}$ and $\widehat{z}_{\beta}=-A_{\beta}^{-1}A_{\eta_j} \in \mathbb{R}^{m}$. For the latter, $A_{\beta}^{-1}A_{\eta_j}\leq0$. $\widehat{z}$ can also be denoted as $\left( \begin{array}{c} e^j \\ -A_{\beta}^{-1}A_{\eta_j} \end{array}\right) $.
+
+We use contradiction to prove the theorem. We first assume that there exists $\widehat{z}=z_1+z_2$, with $z^1\neq\mu z^2$ being rays of $S$ and $\mu\neq0$. By definition of ray, $z^i\neq0$ satisfies $Az^i=0$ and $z^i\geq0$, $i=1,2$. Thus, $z_1$ and $z^2$ belongs to $A$'s null space, which is the linear space of the columns in $n\times (n-m)$ matrix $\left( \begin{array}{c} I \\ A_{\beta}^{-1}A_{\eta} \end{array}\right) $. We denote $\left( \begin{array}{c} I \\ A_{\beta}^{-1}A_{\eta} \end{array}\right) $ as $\left( \begin{array}{cccc} z_1 & z_2 & ... & z_{n-m} \end{array}\right) $, where $z_i= \left( \begin{array}{c} e^i \\ -A_{\beta}^{-1}A_{\eta_i} \end{array}\right) $ and they are linear independent. Note that $\widehat{z}=z_j$.
+
+Thus, we can denote $z^1$ and $z^2$ in linear combination form as $z^1 = \sum_{i=1}^{n-m} \alpha_i z_i =\sum_{i=1}^{n-m} \alpha_i \left( \begin{array}{c} e^i \\ -A_{\beta}^{-1}A_{\eta_i} \end{array}\right) = \left( \begin{array}{c}  \alpha_1 \\...\\\alpha_{n-m} \\ -\sum_{i=1}^{n-m} \alpha_iA_{\beta}^{-1}A_{\eta_i} \end{array}\right) $ and $z^2= \sum_{i=1}^{n-m} \beta_i z_i= \sum_{i=1}^{n-m} \beta_i \left( \begin{array}{c} e^i \\ -A_{\beta}^{-1}A_{\eta_i} \end{array}\right) = \left( \begin{array}{c}  \beta_1 \\...\\\beta_{n-m} \\ -\sum_{i=1}^{n-m} \beta_iA_{\beta}^{-1}A_{\eta_i} \end{array}\right)$.  Considering $z^1\geq0$, $z^2\geq0$, $\alpha_i\geq0, \beta_i\geq0, i=1...(n-m)$.
+
+$\because$ $\widehat{z}=z^1+z^2$
+
+$\therefore$ $\widehat{z}=\sum_{i=1}^{n-m} (\alpha_i+\beta_i) z_i =\sum_{i=1}^{j-1} (\alpha_i+\beta_i) z_i +(\alpha_j+\beta_j)z_j +  \sum_{i=j+1}^{n-m}  (\alpha_i+\beta_i)z_i =\sum_{i=1}^{j-1} (\alpha_i+\beta_i) z_i +(\alpha_j+\beta_j)\widehat{z} +  \sum_{i=j+1}^{n-m}  (\alpha_i+\beta_i)z_i$.
+
+$\therefore$ $\sum_{i=1}^{j-1} (\alpha_i+\beta_i) z_i +(\alpha_j+\beta_j-1)\widehat{z} +  \sum_{i=j+1}^{n-m}  (\alpha_i+\beta_i)z_i=\sum_{i=1}^{j-1} (\alpha_i+\beta_i) z_i +(\alpha_j+\beta_j-1) z_j +  \sum_{i=j+1}^{n-m}  (\alpha_i+\beta_i)z_i =0 $.
+
+$\because$ $z_1, z_2, ..., z_{n-m}$ are linear independent
+
+$\therefore$ $\alpha_i+\beta_i=0, i=1...(n-m), i\neq j$, and $\alpha_j+\beta_j=1$
+
+$\because$ $\alpha_i\geq0, \beta_i\geq0, i=1...(n-m)$
+
+$\therefore$ $\alpha_i=\beta_i=0, i=1...(n-m), i\neq j$, and $\alpha_j+\beta_j=1$
+
+$\therefore$ $z^1=\alpha_jz_j$, $z^2=\beta_jz_j=(1-\alpha_j)z_j$
+
+$\therefore$ $z^1=\alpha_j\widehat{z}$, $z^2=(1-\alpha_j)\widehat{z}$
+
+$\because$ $z^1\neq0$ and $z^2\neq0$
+
+$\therefore$ $\alpha_j\neq0$ and $\alpha_j\neq1$
+
+$\therefore$ let $\mu=\frac{\alpha_j}{1-\alpha_j}\neq0$
+
+$\therefore$ we have $z^1=\mu z^2$
+
+$\therefore$ contradict to the assumption that $z^1\neq\mu z^2$ are rays of $S$ and $\mu\neq0$
+
+$\therefore$ we cannot write $\widehat{z}=z_1+z_2$, with $z^1\neq\mu z^2$ being rays of $S$ and $\mu\neq0$
+
+$\therefore$ basic feasible ray $\widehat{z}$ of convex set $S$ is an extreme ray.
+\begin{flushright} $\blacksquare$ \end{flushright}
