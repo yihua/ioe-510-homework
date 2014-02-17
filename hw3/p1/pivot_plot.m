@@ -66,6 +66,8 @@ for i = 1:m+1
                    plot([intpoint(1)],[intpoint(2)],'Marker','o', ...
                        'MarkerFaceColor','red','MarkerEdgeColor','black', ...
                        'MarkerSize',5);
+                   'infeasible'
+                   intpoint
                 end
             end
         end
