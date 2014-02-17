@@ -6,12 +6,12 @@ clear all;
 global A b c m n beta eta
 
 try 
-    reply = input('NAME of NAME.m file holding input? [pivot_input]: ', 's');
+    reply = input('NAME of NAME.m file holding input? [data_p31]: ', 's');
     if isempty(reply)
-       reply = 'pivot_input';
+       reply = 'data_p31';
        end
 catch
-    reply = 'pivot_input'; % need catch for execution on MathWorks Cloud
+    reply = 'data_p31'; % need catch for execution on MathWorks Cloud
 end
 eval(reply);
  

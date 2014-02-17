@@ -18,13 +18,17 @@ xbar(beta) = xbar_beta;
 xbar_eta = zeros(n-m,1);
 xbar(eta) =  xbar_eta;
 
-Abar_eta = linsolve(A_beta,A_eta);
+Abar_eta = linsolve(A_beta,A_eta)
 
 if (norm(A * xbar - A_beta * xbar_beta + A_eta * xbar_eta) > 0.00001)
     display('error: something is very wrong')
     return
 end
 
+eta
+A(:,eta)
+ybar
+c(eta)
 cbar_eta = (c(eta)' - ybar'*A(:,eta));
 obj = c'*xbar;
 
