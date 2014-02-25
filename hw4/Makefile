@@ -1,23 +1,23 @@
-SRCS =  hw3.tex p1/p1.tex p2/p2.tex
+SRCS =  hw4.tex p1/p1.tex p2/p2.tex
 
-all: hw3.pdf 
+all: hw4.pdf 
 
-pdf: hw3.pdf
+pdf: hw4.pdf
 
-ps: hw3.ps
+ps: hw4.ps
 
-hw3.blg: $(SRCS)
-	latex hw3
-	latex hw3
+hw4.blg: $(SRCS)
+	latex hw4
+	latex hw4
 
-hw3.dvi: $(SRCS) hw3.blg
-	latex hw3
+hw4.dvi: $(SRCS) hw4.blg
+	latex hw4
 
-hw3.ps: hw3.dvi
-	dvips -Ppdf -t letter -D 600 -G1 hw3.dvi
+hw4.ps: hw4.dvi
+	dvips -Ppdf -t letter -D 600 -G1 hw4.dvi
 
-hw3.pdf: hw3.ps
-	ps2pdf14 hw3.ps hw3.pdf
+hw4.pdf: hw4.ps
+	ps2pdf14 hw4.ps hw4.pdf
 
 clean: 
 	\rm -f *.dvi *.aux *.ps *~ *.log *.blg *.bbl *.out
