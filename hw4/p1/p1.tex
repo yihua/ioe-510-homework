@@ -55,32 +55,69 @@ We show the \textbf{basic partition}, corresponding \textbf{basic feasible solut
 
 \begin{table*}[!h]
 \centering
-\small
-\begin{tabular}{|c|c|c|}\hline
+\footnotesize
+\begin{tabular}{|c|c|c|c|c|}\hline
 
-\textbf{basic partition} & \textbf{basic feasible solution} ({\color{green} green} point) & \textbf{basic infeasible solution} ({\color{red} red} point) \\\hline\hline
-$\beta = (3,4,5,6) $, $\eta = (1,2)$ & $\varnothing$ & (0,0,2,-1,8,-3)' \\\hline
-$\beta = (2,4,5,6) $, $\eta = (1,3)$ & $\varnothing$ & (0,-2/3,0,-1/3,14/3,-5)' \\\hline
-$\beta = (2,3,5,6) $, $\eta = (1,4)$ & $\varnothing$ & (0,-1,-1,0,3,-6)' \\\hline
-$\beta = (2,3,4,6) $, $\eta = (1,5)$ & $\varnothing$ & (0,-1.6,-2.8,0.6,0,-7.8)' \\\hline
-$\beta = (2,3,4,5) $, $\eta = (1,6)$ & $\varnothing$ & (0,1,5,-2,13,0)' \\\hline
-$\beta = (1,4,5,6) $, $\eta = (2,3)$ & $\varnothing$ & (2,0,0,1,4,-1)' \\\hline
-$\beta = (1,3,5,6) $, $\eta = (2,4)$ & $\varnothing$ & (1,0,1,0,6,-2)'\\\hline
-$\beta = (1,3,4,6) $, $\eta = (2,5)$ & $\varnothing$ & (4,0,-2,3,0,1)'\\\hline
-$\beta = (1,3,4,5) $, $\eta = (2,6)$ & $\varnothing$ & (3,0,-1,2,2,0)'\\\hline
-$\beta = (1,2,5,6) $, $\eta = (3,4)$ & $\varnothing$ & (0.5,-0.5,0,0,4.5,4)' \\\hline
-$\beta = (1,2,4,6) $, $\eta = (3,5)$ & (14,4,0,9,0,23)' & $\varnothing$ \\\hline
-$\beta = (1,2,4,5) $, $\eta = (3,6)$ & (2.5,1/6,0,4/3,23/6,0)' & $\varnothing$ \\\hline
-$\beta = (1,2,3,6) $, $\eta = (4,5)$ & $\varnothing$ & (-1,-2,-3,0,0,-10)' \\\hline
-$\beta = (1,2,3,5) $, $\eta = (4,6)$ & (1.5,0.5,2,0,7.5,0)' & $\varnothing$ \\\hline
-$\beta = (1,2,3,4) $, $\eta = (5,6)$ & $\varnothing$ & (39/11,-2/11,-23/11,30/11,0,0)' \\\hline
+\textbf{basic partition} & \textbf{primal basic solution} & primal objective & \textbf{dual solution asso-} & dual objective \\
+& ({\color{green} feasible} or {\color{red} infeasible}) & value $c'x$ & \textbf{ciated with basis $\beta$} & value $y'b$\\
+&&&({\color{green} feasible} or {\color{red} infeasible})&\\
+\hline\hline
+$\beta = (3,4,5,6) $, $\eta = (1,2)$ & {\color{red} (0,0,2,-1,8,-3)'} & 44 & {\color{green}(12,10,4/3,3/2)'} &  44\\\hline
+$\beta = (2,4,5,6) $, $\eta = (1,3)$ & {\color{red} (0,-2/3,0,-1/3,14/3,-5)'} & -58/3 &  {\color{green}(-59/3,-35/6,4/3,3/2)'} & -58/3\\\hline
+$\beta = (2,3,5,6) $, $\eta = (1,4)$ & {\color{red} (0,-1,-1,0,3,-6)'} & -51 & {\color{red}(-83,10,4/3,3/2)'} & -51\\\hline
+$\beta = (2,3,4,6) $, $\eta = (1,5)$ & {\color{red} (0,-1.6,-2.8,0.6,0,-7.8)'} & -108 & {\color{green}(-26,10,-5,3/2)'} & -108\\\hline
+$\beta = (2,3,4,5) $, $\eta = (1,6)$ & {\color{red} (0,1,5,-2,13,0)'} & 139 & {\color{red} (131/3,10,4/3,-77/12)'}& 139\\\hline
+$\beta = (1,4,5,6) $, $\eta = (2,3)$ & {\color{red} (2,0,0,1,4,-1)'} & 52 & {\color{red}(16,12,4/3,3/2)'} & 52\\\hline
+$\beta = (1,3,5,6) $, $\eta = (2,4)$ & {\color{red} (1,0,1,0,6,-2)'} & 48 & {\color{green}(16,10,4/3,3/2)'} & 48\\\hline
+$\beta = (1,3,4,6) $, $\eta = (2,5)$ & {\color{red} (4,0,-2,3,0,1)'} & 60 & {\color{red}(16,10,2,3/2)'}& 60\\\hline
+$\beta = (1,3,4,5) $, $\eta = (2,6)$ & {\color{red} (3,0,-1,2,2,0)'} & 56 & {\color{green}(16,10,4/3,1/2)'} & 56\\\hline
+$\beta = (1,2,5,6) $, $\eta = (3,4)$ & {\color{red} (0.5,-0.5,0,0,4.5,4)'} & -3/2 & {\color{green}(16,-59/4,4/3,3/2)'} & -3/2\\\hline
+$\beta = (1,2,4,6) $, $\eta = (3,5)$ & {\color{green} (14,4,0,9,0,23)'} & 480 & {\color{red}(16,-95,37,3/2)'} & 480 \\\hline
+\cellcolor{gray!20} $\beta = (1,2,4,5) $, $\eta = (3,6)$ & \cellcolor{gray!20} {\color{green} (2.5,1/6,0,4/3,23/6,0)'} &\cellcolor{gray!20} 419/6 & \cellcolor{gray!20}{\color{green}(16,37/12,4/3,-71/24)'} &\cellcolor{gray!20} 419/6 \\\hline
+$\beta = (1,2,3,6) $, $\eta = (4,5)$ & {\color{red} (-1,-2,-3,0,0,-10)'} & -150 & {\color{green}(16,10,-29/3,3/2)'} & -150\\\hline
+$\beta = (1,2,3,5) $, $\eta = (4,6)$ & {\color{green} (1.5,0.5,2,0,7.5,0)'} & 195/2 & {\color{red}(16,10,4/3,-75/16)'} & 195/2\\\hline
+$\beta = (1,2,3,4) $, $\eta = (5,6)$ & {\color{red} (39/11,-2/11,-23/11,30/11,0,0)'} & 450/11 & {\color{green}(16,10,-13/11,-36/11)'} & 450/11\\\hline
 
 \end{tabular}
 \caption{Basic partition and basic solutions}
 \label{tab:par-sol}
 \end{table*}
 
+
+
+
 For a certain basic partition, the \textbf{basic solution} is either basic feasible solution or basic infeasible solution. These solutions projected into the space of $(x_2,x_4)$ are shown in Figure \ref{fig:p1}. The \textbf{feasible region} projected into the space is colored {\color{cyan} cyan}. The feasible region is a \textbf{convex set}. The \textbf{extreme points} are $(14,4,0,9,0,23)',(2.5,1/6,0,4/3,23/6,0)' $ and $(1.5,0.5,2,0,7.5,0)'$, which are basic also basic feasible solutions.
+
+
+\begin{table*}[!h]
+\centering
+\footnotesize
+\begin{tabular}{|c|c|c|}\hline
+
+\textbf{basic partition} & \textbf{vector of reduced costs} & $\bar{c}_\eta $ \\
+& \textbf{associated with basis $\beta$} & ({\color{green} green} if $\bar{c}_\eta \geq \mathbf 0$)\\
+\hline\hline
+$\beta = (3,4,5,6) $, $\eta = (1,2)$ & (4,95,0,0,0,0)' & {\color{green}(4,95)'}\\\hline
+$\beta = (2,4,5,6) $, $\eta = (1,3)$ & (107/3,0,95/3,0,0,0)' & {\color{green}(107/3,95/3)'}\\\hline
+$\beta = (2,3,5,6) $, $\eta = (1,4)$ & (99,0,0,-95,0,0)' & (99,-95)'\\\hline
+$\beta = (2,3,4,6) $, $\eta = (1,5)$ & (42,0,0,0,19,0)' & {\color{green}(42,19)'}\\\hline
+$\beta = (2,3,4,5) $, $\eta = (1,6)$ & (-83/3,0,0,0,0,95/3)' & (-83/3,95/3)' \\\hline
+$\beta = (1,4,5,6) $, $\eta = (2,3)$ & (0,107,-4,0,0,0)' & (107,-4)'\\\hline
+$\beta = (1,3,5,6) $, $\eta = (2,4)$ & (0,99,0,4,0,0)' & {\color{green}(99,4)'}\\\hline
+$\beta = (1,3,4,6) $, $\eta = (2,5)$ & (0,105,0,0,-2,0)' & (105,-2)'\\\hline
+$\beta = (1,3,4,5) $, $\eta = (2,6)$ & (0,83,0,0,0,4)' & {\color{green}(83,4)'}\\\hline
+$\beta = (1,2,5,6) $, $\eta = (3,4)$ & (0,0,99/2,107/2,0,0)' & {\color{green}(99/2,107/2)'} \\\hline
+$\beta = (1,2,4,6) $, $\eta = (3,5)$ & (0,0,210,0,-107,0)' & (210,-107)' \\\hline
+$\beta = (1,2,4,5) $, $\eta = (3,6)$ & (0,0,83/6,0,0,107/6)' & {\color{green}(83/6,107/6)'} \\\hline
+$\beta = (1,2,3,6) $, $\eta = (4,5)$ & (0,0,0,70,33,0)' & {\color{green}(70,33)'} \\\hline
+$\beta = (1,2,3,5) $, $\eta = (4,6)$ & (0,0,0,-83/4,0,99/4)' & (-83/4,99/4)' \\\hline
+$\beta = (1,2,3,4) $, $\eta = (5,6)$ & (0,0,0,0,83/11,210/11)' & {\color{green}(83/11,210/11)'}\\\hline
+
+\end{tabular}
+\caption{Vectors of reduced costs associated with basis $\beta$}
+\label{tab:par-sol}
+\end{table*}
+
 
 
 \begin{figure}[h!!]
@@ -93,7 +130,7 @@ For a certain basic partition, the \textbf{basic solution} is either basic feasi
 \footnotesize
 \begin{tabular}{|c|c|c|c|c|}\hline
 
-\textbf{basic partition} & \textbf{basic feasible solution} & \textbf{basic direction} & \textbf{basic feasible direction} & $A_{\beta}^{-1}b$ \\\hline
+\textbf{basic partition} & \textbf{basic feasible solution} & \textbf{basic (feasible) direction} &  $A_{\beta}^{-1}b$ \\\hline
 $\beta = (1,2,4,6) $, $\eta = (3,5)$&(14,4,0,9,0,23)'&(5,2,1,3,0,11)'&(5,2,1,3,0,11)'&(14,4,9,23)'\\
 &&(-3,-1,0,-2,1,-6)'&(-3,-1,0,-2,1,-6)'&\\\hline
 $\beta = (1,2,4,5) $, $\eta = (3,6)$&(2.5,1/6,0,4/3,23/6,0)'&(-0.5,1/6,1,-2/3,11/6,0)'&(-0.5,1/6,1,-2/3,11/6,0)'&(2.5,1/6,4/3,23/6)'\\
