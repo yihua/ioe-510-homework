@@ -45,13 +45,11 @@ Let $y$ be a vector of variable in $\mathbb{R}^m$. The dual of the standard-form
 \tag{D}
 \]
 
-The \textbf{ dual solution of (D) associated with basis $\beta$} ($\beta := (\beta_1, \beta_2, \beta_3, \beta_4) = (1,3,4,5)$) is
+The \textbf{ dual solution of (D) associated with basis $\beta$} is 
 
-$$\bar{y}':= c_\beta'A_\beta^{-1} = $$
+$$\bar{y}':= c_\beta'A_\beta^{-1}~.$$
 
-%As we show in the data above, the \textbf{basic partition} of $A$ is $\beta = (1,3,5,6) $ and $\eta = (2,4)$. The \textbf{basic solution} $\bar{x} \in \mathbb{R}^6$ with basic partition via:
-
-We show the \textbf{basic partition}, corresponding \textbf{basic feasible solution} and corresponding \textbf{basic infeasible solution} in Table \ref{tab:par-sol}.
+For each basic partition, the \textbf{dual solution associated with basis $\beta$} is shown in Table \ref{tab:primal-dual}. The dual solution associated with basis $\beta$ is in {\color{green} green} if it is feasible and in {\color{red} green} if it is infeasible. We also show the primal basic solution and objective value of primal and dual problems. As we can see in Table \ref{tab:primal-dual}, for each basis $\beta$, the primal basic solution (feasible or not) and the dual solution (feasible or not) associated with $\beta$ have equal objective value.
 
 \begin{table*}[!h]
 \centering
@@ -79,15 +77,13 @@ $\beta = (1,2,3,5) $, $\eta = (4,6)$ & {\color{green} (1.5,0.5,2,0,7.5,0)'} & 19
 $\beta = (1,2,3,4) $, $\eta = (5,6)$ & {\color{red} (39/11,-2/11,-23/11,30/11,0,0)'} & 450/11 & {\color{green}(16,10,-13/11,-36/11)'} & 450/11\\\hline
 
 \end{tabular}
-\caption{Basic partition and basic solutions}
-\label{tab:par-sol}
+\caption{Basic partition, primal solutions and dual solutions}
+\label{tab:primal-dual}
 \end{table*}
 
+We verify the optimal solution of problem (P) through {\tt AMPL}.
 
-
-
-For a certain basic partition, the \textbf{basic solution} is either basic feasible solution or basic infeasible solution. These solutions projected into the space of $(x_2,x_4)$ are shown in Figure \ref{fig:p1}. The \textbf{feasible region} projected into the space is colored {\color{cyan} cyan}. The feasible region is a \textbf{convex set}. The \textbf{extreme points} are $(14,4,0,9,0,23)',(2.5,1/6,0,4/3,23/6,0)' $ and $(1.5,0.5,2,0,7.5,0)'$, which are basic also basic feasible solutions.
-
+The \textbf{vector of reduced costs associated with basis $\beta$} is shown in Table \ref{tab:vector-cost}. Associated with Table \ref{tab:primal-dual}, if $\bar{c}_\eta \geq \mathbf{0}$, corresponding dual solution of (D) associated with basis $\beta$ is feasible for (D). 
 
 \begin{table*}[!h]
 \centering
@@ -115,10 +111,10 @@ $\beta = (1,2,3,4) $, $\eta = (5,6)$ & (0,0,0,0,83/11,210/11)' & {\color{green}(
 
 \end{tabular}
 \caption{Vectors of reduced costs associated with basis $\beta$}
-\label{tab:par-sol}
+\label{tab:vector-cost}
 \end{table*}
 
-
+We generate Figure \ref{fig:p1} where the feasible region of (P) is projected into the space of  $(x_3,x_6)$.
 
 \begin{figure}[h!!]
 \includegraphics[width=0.7\textwidth]{p1/p1.eps}
@@ -128,18 +124,39 @@ $\beta = (1,2,3,4) $, $\eta = (5,6)$ & (0,0,0,0,83/11,210/11)' & {\color{green}(
 \begin{table*}[!h]
 \centering
 \footnotesize
-\begin{tabular}{|c|c|c|c|c|}\hline
+\begin{tabular}{|c|c|c|c|c|c|}\hline
 
-\textbf{basic partition} & \textbf{basic feasible solution} & \textbf{basic (feasible) direction} &  $A_{\beta}^{-1}b$ \\\hline
-$\beta = (1,2,4,6) $, $\eta = (3,5)$&(14,4,0,9,0,23)'&(5,2,1,3,0,11)'&(5,2,1,3,0,11)'&(14,4,9,23)'\\
-&&(-3,-1,0,-2,1,-6)'&(-3,-1,0,-2,1,-6)'&\\\hline
-$\beta = (1,2,4,5) $, $\eta = (3,6)$&(2.5,1/6,0,4/3,23/6,0)'&(-0.5,1/6,1,-2/3,11/6,0)'&(-0.5,1/6,1,-2/3,11/6,0)'&(2.5,1/6,4/3,23/6)'\\
-&&(0.5,1/6,0,1/3,-1/6,1)'&(0.5,1/6,0,1/3,-1/6,1)'&\\\hline
-$\beta = (1,2,3,5) $, $\eta = (4,6)$&(1.5,0.5,2,0,7.5,0)'&(0.75,-0.25,-1.5,1,-2.75,0)'&(0.75,-0.25,-1.5,1,-2.75,0)'&(1.5,0.5,2,7.5)'\\
-&&(0.25,0.25,0.5,0,0.75,1)'&(0.25,0.25,0.5,0,0.75,1)'&\\\hline
+\textbf{basic partition} & \textbf{basic feasible} & \textbf{basic (feasible)} & $\bar{A}_{\eta_j}$ & $ \bar{b} := A_{\beta}^{-1}b$ & $\bar{\lambda}$ \\
+&\textbf{solution} & \textbf{direction} & & & \\
+\hline
+$\beta = (1,2,4,6) $, $\eta = (3,5)$&(14,4,0,9,0,23)'&(5,2,1,3,0,11)'& (-5,-2,-3,-11)' &(14,4,9,23)'&$\to+\infty$\\
+&&(-3,-1,0,-2,1,-6)'& (3,1,2,6)'&&23/6\\\hline
+$\beta = (1,2,4,5) $, $\eta = (3,6)$&(2.5,1/6,0,4/3,23/6,0)'&(-0.5,1/6,1,-2/3,11/6,0)'& (0.5,-1/6,2/3,-11/6)' &(2.5,1/6,4/3,23/6)'&2\\
+&&(0.5,1/6,0,1/3,-1/6,1)'& (-0.5,-1/6,-1/3,1/6)' &&23\\\hline
+$\beta = (1,2,3,5) $, $\eta = (4,6)$&(1.5,0.5,2,0,7.5,0)'&(0.75,-0.25,-1.5,1,-2.75,0)'& (-0.75, 0.25,1.5,2.75)' &(1.5,0.5,2,7.5)'&4/3\\
+&&(0.25,0.25,0.5,0,0.75,1)'& (-0.25,-0.25,-0.5,-0.75)' &&$\to+\infty$\\\hline
 \end{tabular}
-\caption{Basic direction and basic feasible direction relative to the basic feasible solution}
-\label{tab:direction}
+\caption{Basic direction, basic feasible direction and maximum step}
+\label{tab:max-step}
+\end{table*}
+
+\begin{table*}[!h]
+\centering
+\footnotesize
+\begin{tabular}{|c|c|c|c|c|c|}\hline
+
+\textbf{basic partition} & \textbf{basic feasible} & \textbf{basic (feasible)} & $\bar{\lambda}$ & \textbf{another basic} \\
+&\textbf{solution} & \textbf{direction ($\bar{z}$)} & & \textbf{feasible solution} \\
+\hline
+$\beta = (1,2,4,6) $, $\eta = (3,5)$&(14,4,0,9,0,23)'&(5,2,1,3,0,11)'&$\to+\infty$&-\\
+&&(-3,-1,0,-2,1,-6)'&23/6&(2.5,1/6,0,4/3,23/6,0)'\\\hline
+$\beta = (1,2,4,5) $, $\eta = (3,6)$&(2.5,1/6,0,4/3,23/6,0)'&(-0.5,1/6,1,-2/3,11/6,0)'&2&(1.5,0.5,2,0,7.5,0)'\\
+&&(0.5,1/6,0,1/3,-1/6,1)'&23&(14,4,0,9,0,23)'\\\hline
+$\beta = (1,2,3,5) $, $\eta = (4,6)$&(1.5,0.5,2,0,7.5,0)'&(0.75,-0.25,-1.5,1,-2.75,0)'&4/3&(2.5,1/6,0,4/3,23/6,0)'\\
+&&(0.25,0.25,0.5,0,0.75,1)'&$\to+\infty$&-\\\hline
+\end{tabular}
+\caption{Another basic feasible solution}
+\label{tab:another-sol}
 \end{table*}
 
 The \textbf{basic direction} and \textbf{basic feasible direction relative to the basic feasible solution} are shown in Table \ref{tab:direction}. We check whether a basic direction is a basic feasible direction by verifying  $\bar{b} = A_{\beta}^{-1}b$: $\bar{b}_i > 0$, for all $i$ such that $\bar{a}_{i,\eta_j}>0$, where $\bar{A}_{\eta_j} := A_{\beta}^{-1}A_{\eta_j}$. 
