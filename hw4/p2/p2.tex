@@ -1,8 +1,137 @@
 
 \section{Exercise 4.2 Worry-Free Simplex Algorithm can cycle}
-%\textbf{Problem:} Make a small example, say with six variables and four equations, to fully illustrate all of the concepts in this chapter. In A.2, there are MATLAB scripts and functions that could be very helpful here.
+\textbf{Problem:} Let $\theta=2\pi/k$, with integer $k\geq5$. The idea is to use the symmetry of the geometric circle, and complete a cycle of the Worry-Free Simplex Algorithm in $2k$ pivots. Choose a constant $\gamma$ satisfying $0<\gamma<(\sin \theta)/(1-\cos \theta)$. Let $A_1=\left( \begin{array}{c} 1\\ 0\end{array}\right)$ and $A_2=\left( \begin{array}{c} 0\\ \gamma\end{array}\right)$.
+
+Let $R=\left( \begin{array}{cc} \cos \theta & -\sin \theta\\ \sin \theta & \cos \theta \end{array}\right)$. Then, for $j=3,4,...,2k$, let $A_j=\left\lbrace \begin{array}{cc} R^{(j-1)/2}A_1, & \text{for odd } j\\ R^{(j-2)/2}A_2, &  \text{for even } j\end{array}\right.$
+
+We can observe that for odd $j$, $A_j$ is a rotation of $A_1$ by $(j-1)\pi/k$ radians, and for even $j$, $A_j$ is a rotation of $A_2$ by $(j-2)\pi/k$ radians.
+
+Let $c_j=1-a_{1j}-a_{2j}/\gamma$, for $j=1,2,...,2k$, and let $b=(0, 0)$ . Because $b=0$ , the problem is fully degenerate; that is, $\overline{x}=0$ for all basic solutions $\overline{x}$. Notice that this implies that either the problem has optimal objective value of zero, or the objective value is unbounded.
+
+For $k=5$, check that you can choose $\gamma=\cot \theta$, and then check that the following is a sequence of bases $\beta$ that are legal for the Worry-Free Simplex Algorithm:
+\[
+\beta = (1,2) \rightarrow (2, 3) \rightarrow (3, 4) \rightarrow ... \rightarrow (2k-1, 2k) \rightarrow (2k, 1) \rightarrow (1, 2).
+\]
+You need to check that for every pivot, the incoming basic variable $x_{\eta{}_j}$ has negative reduced cost, and that the outgoing variable is legally selected — that is that $\overline{a}_{i,\eta{}_j}>0$. Feel free to use MATLAB, MATHEMATICA, etc.
+
+
 
 \textbf{Solution:}
 
-Suppose that we have the data for $n=6$ and $m=4$:
+We use MATLAB to generate $A$, $c$, and $b$ using the method above with $\theta=2\pi/k$, $\gamma=\cot \theta$ and $k=5$. Then we change $\beta$ according to $(1,2) \rightarrow (2, 3) \rightarrow (3, 4) \rightarrow ... \rightarrow (9, 10) \rightarrow (10, 1) \rightarrow (1, 2)$, and for each pivot we calculate the reduced cost $\overline{c}_{\eta{}_j}=c_{\eta{}_j}-c'_\beta{}A_{\beta}^{-1}A_{\eta{}_j}$ for $x_{\eta{}_j}$, and $\overline{A}=A_{\beta}^{-1}A$ to get $\overline{a}_{i,\eta{}_j}$. The program \verb!hw4_2.m! is as follows.
 
+\bigskip
+\hrule 
+\small
+\verbatiminput{p2/hw4_2.m}
+\normalsize
+\hrule
+\bigskip
+
+
+The $\overline{c}_{\eta{}_j}$ and $\overline{a}_{i,\eta{}_j}$ for each pivot is shown in Table \ref{tab: k5}. As shown in this table, all $\overline{c}'_{\eta{}_j}$ is negative and all $\overline{a}_{i,\eta{}_j}$ is positive. Thus in each pivot of the bases $\beta$ sequence $(1,2) \rightarrow (2, 3) \rightarrow (3, 4) \rightarrow ... \rightarrow (9, 10) \rightarrow (10, 1) \rightarrow (1, 2)$, the incoming basic variable $x_{\eta{}_j}$ has negative reduced cost, and that the outgoing variable is legally selected.
+
+\begin{table*}[!h]
+\centering
+\small
+\begin{tabular}{|c|c|c|c|c|}\hline
+$\beta$ & $\eta{}_j$ & $i$ & $\overline{c}_{\eta{}_j}$ & $\overline{a}_{i,\eta{}_j}$ \\
+\hline
+(1,2) & 	3  & 	1  & 	-2.236  & 	0.309\\\hline
+(2,3)  & 	4 & 	1 & 	-1.236 & 	3.236\\\hline
+(3,4) & 	5 & 	1 & 	-2.236 & 	0.309\\\hline
+(4,5) & 	6 & 	1 & 	-1.236 & 	3.236\\\hline
+(5,6) & 	7 & 	1 & 	-2.236 & 	0.309\\\hline
+(6,7) & 	8 & 	1 & 	-1.236 & 	3.236\\\hline
+(7,8) & 	9 & 	1 & 	-2.236 & 	0.309\\\hline
+(8,9) & 	10	 & 1 & 	-1.236 & 	3.236\\\hline
+(9,10)	 & 1 & 	1 & 	-2.236 & 	0.309\\\hline
+(10,1) & 	2 & 	1 & 	-1.236 & 	3.236\\\hline
+\end{tabular}
+\caption{Reduced cost and $\overline{a}_{i,\eta{}_j}$ checking for pivots with $k=5$.}
+\label{tab: k5}
+\end{table*}
+
+However, when we change $k$ to more than $5$, we find that simply following sequence $\beta = (1,2) \rightarrow (2, 3) \rightarrow (3, 4) \rightarrow ... \rightarrow (2k-1, 2k) \rightarrow (2k, 1) \rightarrow (1, 2)$ can hardly lead to a cycle --- at some point in the sequence the members of $\overline{c}_{\eta{}}$ will be all greater than 0, thus the incoming basic variable $x_{\eta{}_j}$ does not have negative reduced cost.
+
+Since the problem is fully degenerate, the cycle should exist. To find the cycles for $k>5$, we write another MATLAB problem to find cycles using depth-first search (DFS) for this problem. In the DFS, we recursively try all possible incoming nonbasis variables with $\overline{c}_{\eta{}_j}<0$ and all possible outgoing basis variables with $\overline{a}_{i,\eta{}_j}>0$ in the $\beta$ sequence, and stop the DFS if we find two same $\beta$ in the sequence. For the initial $\beta$ value we exclusively try all possible $\beta$ with $(i,j), i,j=1...2k, i<j$. The program \verb!hw4_2auto.m! and function \verb!searchCycle.m! are as follows.
+
+\bigskip
+\hrule 
+\small
+\verbatiminput{p2/hw4_2auto.m}
+\normalsize
+\hrule
+\bigskip
+
+\bigskip
+\hrule 
+\small
+\verbatiminput{p2/searchCycle.m}
+\normalsize
+\hrule
+\bigskip
+
+Using this program, we can find cycles for any $k\geq5$. For example, for $k=7$, we find the cycle with 14 pivots:  $\beta = (3,14) \rightarrow (3, 12) \rightarrow (12,1) \rightarrow (1,10) \rightarrow (10,13) \rightarrow (13,8) \rightarrow (8, 11) \rightarrow (11,6) \rightarrow  (6,9) \rightarrow  (9,4) \rightarrow  (4,7) \rightarrow  (7,2) \rightarrow  (2,5) \rightarrow  (5,14) \rightarrow  (3,14)$. The $\overline{c}_{\eta{}_j}$ and $\overline{a}_{i,\eta{}_j}$ for each pivot is shown in Table \ref{tab: k7}.
+
+\begin{table*}[!h]
+\centering
+\small
+\begin{tabular}{|c|c|c|c|c|}\hline
+$\beta$ & $\eta{}_j$ & $i$ & $\overline{c}_{\eta{}_j}$ & $\overline{a}_{i,\eta{}_j}$ \\
+\hline
+(14,3) & 12 & 1 &	-0.247 & 4.049\\\hline
+(3,12) & 1 	& 1 & -0.335    & 0.247\\\hline
+(12,1) & 10 & 1 & -0.247 & 4.049\\\hline
+(1,10) & 13 & 1 & -0.335 & 0.247\\\hline
+(10,13) &  8 & 1 & -0.247 & 4.049\\\hline
+(13,8) & 11 & 1 &  -0.335 & 0.247\\\hline
+(8,11) & 6 & 1 & -0.247 & 4.049\\\hline
+(11,6) & 9 & 1 & -0.335 & 0.247\\\hline
+(6,	9) & 4 & 1 & -0.247 & 4.049\\\hline
+(9,	4) & 7 & 1 & -0.335 & 0.247\\\hline
+(4,	7) & 2 & 1 & -0.247 & 4.049\\\hline
+(7,	2) & 5 & 1 & -0.335 & 0.247\\\hline
+(2,	5) & 14 & 1 & -0.247 & 4.049\\\hline
+(5, 14) & 3 & 1 & -0.335 & 0.247\\\hline
+\end{tabular}
+\caption{Reduced cost and $\overline{a}_{i,\eta{}_j}$ checking for pivots with $k=7$.}
+\label{tab: k7}
+\end{table*}
+
+We also try on $k=15$, and we find a cycle with 24 pivots:  $\beta = (1, 16) \rightarrow (1,18) \rightarrow (1,20) \rightarrow (1,22) \rightarrow (22,3) \rightarrow (3,24) \rightarrow (24,5) \rightarrow (5,26) \rightarrow  (26,7) \rightarrow  (7,28) \rightarrow  (28,9) \rightarrow  (9,2) \rightarrow  (2,11) \rightarrow  (11,4) \rightarrow  (4,13)\rightarrow  (13,6)\rightarrow  (6,15)\rightarrow  (15,8)\rightarrow  (8,17)\rightarrow  (17,10)\rightarrow  (10,19)\rightarrow  (19,12)\rightarrow  (12,1)\rightarrow  (1,14)\rightarrow  (1,16)$. The $\overline{c}_{\eta{}_j}$ and $\overline{a}_{i,\eta{}_j}$ for each pivot is shown in Table \ref{tab: k15}.
+
+\begin{table*}[!h]
+\centering
+\small
+\begin{tabular}{|c|c|c|c|c|}\hline
+$\beta$ & $\eta{}_j$ & $i$ & $\overline{c}_{\eta{}_j}$ & $\overline{a}_{i,\eta{}_j}$ \\
+\hline
+(16,1) & 18 & 1 & -0.934 & 1.000\\\hline
+(1, 18) & 20 & 2 & 	-0.761 & 0.827\\\hline
+(1, 20) & 22 & 2 & -0.747 & 0.618\\\hline
+(1, 22) & 3 & 1 & -0.256 & 1.618\\\hline
+(22, 3) & 24 & 1 & -0.747 & 0.618\\\hline
+(3, 24)  & 5 & 1 & -0.256 & 1.618\\\hline
+(24, 5) & 26 & 1 & -0.747 & 0.618\\\hline
+(5, 26) & 7 & 1 & -0.256 & 1.618\\\hline
+(26, 7) & 28 & 1 & -0.747 & 0.618\\\hline
+(7, 28) & 9 & 1& -0.256 & 1.618\\\hline
+(28, 9)  & 2 & 1 & -1.192 & 0.129\\\hline
+(9, 2) & 11 & 1 & -2.051 & 4.783\\\hline
+(2, 11) & 4 & 1 & -1.036 & 0.209\\\hline
+(11, 4) & 13 & 1 & -2.051 & 4.783\\\hline
+(4, 13) & 6 & 1 & -1.036 & 0.209\\\hline
+(13, 6) & 15 & 1 & -2.051 & 4.783\\\hline
+(6, 15) & 8 & 1 & -1.036 & 0.209\\\hline
+(15, 8) & 17 & 1 & -2.051 & 4.783\\\hline
+(8, 17) & 10 & 1 & -1.036 & 0.209\\\hline
+(17,  10) & 19 & 1 & -2.051 & 4.783\\\hline
+(10, 19) & 12 & 1 & -1.036 & 0.209\\\hline
+(19, 12) & 1 & 1 & -1.280 & 4.783\\\hline
+(12, 1) & 14 & 1 & -2.445 & 1.618\\\hline
+(1, 14) & 16 & 2 & -1.338 & 1.209\\\hline
+\end{tabular}
+\caption{Reduced cost and $\overline{a}_{i,\eta{}_j}$ checking for pivots with $k=15$.}
+\label{tab: k15}
+\end{table*}
