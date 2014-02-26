@@ -81,9 +81,9 @@ $\beta = (1,2,3,4) $, $\eta = (5,6)$ & {\color{red} (39/11,-2/11,-23/11,30/11,0,
 \label{tab:primal-dual}
 \end{table*}
 
-We verify the optimal solution of problem (P) through {\tt AMPL}.
+We verify the optimal solution of problem (P) through {\tt AMPL}. The optimal solution is highlighted in Table \ref{tab:primal-dual} with {\color{gray} gray} color. 
 
-The \textbf{vector of reduced costs associated with basis $\beta$} is shown in Table \ref{tab:vector-cost}. Associated with Table \ref{tab:primal-dual}, if $\bar{c}_\eta \geq \mathbf{0}$, corresponding dual solution of (D) associated with basis $\beta$ is feasible for (D). 
+The \textbf{vector of reduced costs associated with basis $\beta$} is shown in Table \ref{tab:vector-cost}. Associated with Table \ref{tab:primal-dual}, if $\bar{c}_\eta \geq \mathbf{0}$, corresponding dual solution of (D) associated with basis $\beta$ is feasible for (D). Considering Table \ref{tab:primal-dual} and \ref{tab:vector-cost} together, we can see that for feasible basis $\beta = (1,2,4,5)$, $\bar{c}_\eta \geq \mathbf{0}$, the primal solution $(2.5,1/6,0,4/3,23/6,0)'$ and the dual solution $(16,37/12,4/3,-71/24)'$ associated with $\beta$ are optimal.
 
 \begin{table*}[!h]
 \centering
@@ -116,10 +116,13 @@ $\beta = (1,2,3,4) $, $\eta = (5,6)$ & (0,0,0,0,83/11,210/11)' & {\color{green}(
 
 We generate Figure \ref{fig:p1} where the feasible region of (P) is projected into the space of  $(x_3,x_6)$.
 
+
 \begin{figure}[h!!]
 \includegraphics[width=0.7\textwidth]{p1/p1.eps}
 \caption{Feasible region projected into the space of $(x_3,x_6)$}\label{fig:p1}
 \end{figure}
+
+In Table \ref{tab:max-step}, we can see that for every feasible basis $\beta$, we have $\bar{b}_i > 0$ for $i=1,2,...,m.$. So the problem (P) satisfies the \textbf{nondegeneracy} hypothesis.
 
 \begin{table*}[!h]
 \centering
@@ -140,6 +143,8 @@ $\beta = (1,2,3,5) $, $\eta = (4,6)$&(1.5,0.5,2,0,7.5,0)'&(0.75,-0.25,-1.5,1,-2.
 \label{tab:max-step}
 \end{table*}
 
+We show the new solution $\bar{x}+\bar{\lambda}\bar{z}$ is feasible in Table \ref{tab:another-sol}. With Table \ref{tab:primal-dual}, we can see the new solution has lesser objective value than $\bar{x}$.
+
 \begin{table*}[!h]
 \centering
 \footnotesize
@@ -159,6 +164,15 @@ $\beta = (1,2,3,5) $, $\eta = (4,6)$&(1.5,0.5,2,0,7.5,0)'&(0.75,-0.25,-1.5,1,-2.
 \label{tab:another-sol}
 \end{table*}
 
-The \textbf{basic direction} and \textbf{basic feasible direction relative to the basic feasible solution} are shown in Table \ref{tab:direction}. We check whether a basic direction is a basic feasible direction by verifying  $\bar{b} = A_{\beta}^{-1}b$: $\bar{b}_i > 0$, for all $i$ such that $\bar{a}_{i,\eta_j}>0$, where $\bar{A}_{\eta_j} := A_{\beta}^{-1}A_{\eta_j}$. 
+The \textbf{phase-one problem} from (P) is
 
-The \textbf{basic feasible rays} $\bar{z}$ are $(5,2,1,3,0,11)'$ and $(0.25,0.25,0.5,0,0.75,1)'$ as they are basic feasible directions relative to basic feasible solutions so that $A\bar{z} = \mathbf{0}$, and also $\bar{z} \geq \mathbf{0}$. Since they are basic feasible rays, they are \textbf{extreme rays} of its feasible region.
+\[
+\tag{$\Phi$}
+\begin{array}{rrcl}
+ \min & x_{n+1}  &      &   \\
+      &  Ax  + A_{n+1}x_{n+1} &   =  & b~; \\
+      &   x~, x_{n+1}  & \geq & \mathbf{0}~.
+\end{array}
+\]
+
+where $A_{n+1} = -A_{\tilde{\beta}}\mathbf{1}$. If choosing $\tilde{\beta} = (1,2,3,6)$,$\bar{x}_6=-10$ is the most negative. The basic solution associated with $\beta = (1,2,3,7) $ is $(9,8,7,0,0,0,10)'$. It is easy to verify that $\beta $ is a feasible basis of ($\Phi$) ($(9,8,7,0,0,0,10)'$ is a basic feasible solution).
