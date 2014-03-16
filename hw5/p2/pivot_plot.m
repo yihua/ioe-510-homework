@@ -76,9 +76,9 @@ end
 
 polygonlist
 % for specific example
-%polygonlist = [polygonlist; [2/3,30] ];
-%polygonlist = [polygonlist; [10,30] ];
-%polygonlist = [polygonlist; [10,16] ];
+polygonlist = [polygonlist; [2,5] ];
+polygonlist = [polygonlist; [5,5] ];
+polygonlist = [polygonlist; [5,1/2] ];
 %if ( size(polygonlist,1) > 2 && ...
 %        any(pivot_direction(1) < 0) && any(pivot_direction(2) < 0) )
     polyx=polygonlist(:,1);
