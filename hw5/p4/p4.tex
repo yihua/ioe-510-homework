@@ -1,0 +1,74 @@
+\section{Exercise 5.4 Another Proof of a Theorem of the Alternative}
+\textbf{Problem:} Prove the Theorem of the Alternative for Linear Inequalities directly from the Farkas Lemma, without appealing to linear-optimization duality. HINT: Transform (I) of the Theorem of the Alternative for Linear Inequalities to a system of the form of (I) of the Farkas Lemma.
+
+\textbf{Solution:}
+
+In the Theorem of the Alternative for Linear Inequalities, we have:
+
+\begin{equation}
+\label{eq: thm_alter_ineq_1}
+Ax \geq b.
+\end{equation}
+
+\begin{equation}
+\label{eq: thm_alter_ineq_2}
+ \begin{array}{lrcll}
+    & y'b >0;\\
+    & y'A=0;\\
+    & y\geq0.
+  \end{array}
+\end{equation}
+
+In (\ref{eq: thm_alter_ineq_1}), we replace unrestricted variable $x$ with $x^{+}-x^(-)$, where  $x^{+}$ and $x^(-)$ are a pair of non-negative variables. Next we introduce slack variable $t$ to replace inequality with equality. After these transformation we have a new form of (\ref{eq: thm_alter_ineq_1}) as follows.
+\begin{equation}
+\label{eq: thm_alter_ineq_1_1}
+ \begin{array}{lrcll}
+    & Ax^{+}-Ax^{-}-t=b;\\
+    & x^{+}\geq0, x^{-}\geq0, t \geq0;
+  \end{array}
+\end{equation}
+
+Let $A_1=\left( \begin{array}{ccc} A & -A & -I \end{array}\right)$, and $x_1=\left( \begin{array}{c} x^{+}\\ x^{-}\\ t \end{array}\right)$, the (\ref{eq: thm_alter_ineq_1_1}) is equivalent to (\ref{eq: thm_alter_ineq_1_2}) as follows.
+\begin{equation}
+\label{eq: thm_alter_ineq_1_2}
+ \begin{array}{lrcll}
+    & A_1x_1=b;\\
+    & x_1 \geq0;
+  \end{array}
+\end{equation}
+
+Then we can apply the Farkas Lemma, which states that exactly one of the two systems (\ref{eq: thm_alter_ineq_1_2}) and (\ref{eq: thm_alter_ineq_2_2}) as follows has a solution.
+
+\begin{equation}
+\label{eq: thm_alter_ineq_2_2}
+ \begin{array}{lrcll}
+    & y'b >0;\\
+    & y'A_1 \leq0;
+  \end{array}
+\end{equation}
+
+(\ref{eq: thm_alter_ineq_2_2}) is equivalent to (\ref{eq: thm_alter_ineq_2_3}) as follows,
+\begin{equation}
+\label{eq: thm_alter_ineq_2_3}
+ \begin{array}{lrcll}
+    & y'b >0;\\
+    & y'A \leq0;\\
+    & -y'A \leq0;\\
+    & -y' \leq0;
+  \end{array}
+\end{equation}
+
+And (\ref{eq: thm_alter_ineq_2_3}) is equivalent to (\ref{eq: thm_alter_ineq_2_1}) as follows,
+\begin{equation}
+\label{eq: thm_alter_ineq_2_1}
+ \begin{array}{lrcll}
+    & y'b >0;\\
+    & y'A =0;\\
+    & y' \geq 0;
+  \end{array}
+\end{equation}
+
+(\ref{eq: thm_alter_ineq_2_1}) is exactly the same as (\ref{eq: thm_alter_ineq_2}). 
+
+Since exactly one of the two systems (\ref{eq: thm_alter_ineq_1_2}) and (\ref{eq: thm_alter_ineq_2_2}) has a solution, (\ref{eq: thm_alter_ineq_1_2}) is equivalent to (\ref{eq: thm_alter_ineq_1}) and (\ref{eq: thm_alter_ineq_2_2}) is equivalent to (\ref{eq: thm_alter_ineq_2}), we have the conclusion that exactly one of the two systems (\ref{eq: thm_alter_ineq_1}) and (\ref{eq: thm_alter_ineq_2}) has a solution, which proves Theorem of the Alternative for Linear Inequalities.
+\begin{flushright} $\blacksquare$ \end{flushright}
