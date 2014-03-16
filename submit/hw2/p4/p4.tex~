@@ -1,0 +1,70 @@
+\section{Exercise 2.4 Task scheduling}
+\textbf{Solution:}
+The objective of the problem is to minimize the start time of task $n+1$, $t_{n+1}$. For the constraints on start time of each task, $$t_1 = 0$$ and $$t_i \geq 0, ~i \in \mathbb{N}, ~2 \leq i \leq n+1.$$ For the precedences between tasks, if task $j$ must be completed before task $i$ can be started, namely $j \in \Psi_i$ ($\Psi_i$ is the set of tasks that must be completed before task $i$ can be started), the start time of task $i$ must be larger than or equal to the start time of task $j$ plus the duration of task $j$, $d_j$, namely, $$t_j + d_j \leq t_i,~i \in \mathbb{N}, ~2 \leq i \leq n+1,~\forall j \in \Psi_i.$$ Thus the task scheduling problem can be formulated mathematically as follows:
+
+\[
+\tag{P4}
+\begin{array}{rrcll}
+ \min & t_{n+1}  &  &   & \\
+      &  t_j + d_j  &   \leq  & t_i, &i \in \mathbb{N}, ~2 \leq i \leq n+1,~\forall j \in \Psi_i~; \\
+      &  t_1 & = & 0~, & \\
+      &  t_i & \geq & 0, & i \in \mathbb{N}, ~2 \leq i \leq n+1~.
+\end{array}
+\]
+
+An example of a task-scheduling problem ($n=5$) is given in Table \ref{tab:duration}.
+
+\begin{table*}[!h]
+\centering
+\small
+\begin{tabular}{|c|c|c|c|c|c|c|c|}\hline
+
+$i$ & 0 & 1 & 2 & 3 & 4 & 5 & 6  \\\hline
+$d_i$ & 0 & 2 & 1 & 6 & 4 & 2 & 0 \\\hline
+$\Psi_i$ & $\varnothing$ & \{0\} & \{1\} & \{2\} & \{1\} & \{3,4\} & \{4,5\} \\\hline
+\end{tabular}
+\caption{Duration of each task, and precedences between tasks}
+\label{tab:duration}
+\end{table*}
+
+The model file {\tt ex2.4.mod} in {\tt AMPL} for the task-scheduling problem \ref{opt:task-sched} is as follows:
+
+\bigskip
+\hrule 
+\small
+\verbatiminput{p4/ex2.4.mod}
+\normalsize
+\hrule
+\bigskip
+
+The sample data set is in {\tt ex2.4.dat}:
+
+\bigskip
+\hrule
+\small
+\verbatiminput{p4/ex2.4.dat}
+\normalsize
+\hrule
+\bigskip
+
+Finally, we have {\tt ex2.4.run}:
+
+\bigskip
+\hrule
+\small
+\verbatiminput{p4/ex2.4.run}
+\normalsize
+\hrule
+\bigskip
+
+The output of running the problem is:
+
+\bigskip
+\hrule
+\small
+\verbatiminput{p4/ex2.4.out}
+\normalsize
+\hrule
+\bigskip
+
+The result can be interpreted as this: task 1 is started at $t=0$ and finished at $t=2$, when task 2 and 4 can be started. Task 2 is finished at $t=3$. Only after both task 4 is finished at $t=6$ and task 3 is finished at $t=9$ can task 5 start at $t=9$. The start time of task 6 is $t=11$, when all tasks are finished.

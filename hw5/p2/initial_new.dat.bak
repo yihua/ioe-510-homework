@@ -1,0 +1,28 @@
+
+# production.dat // Jon Lee
+# 
+
+param m := 3; # NUMBER OF ROWS
+
+param b :=    # RIGHT-HAND SIDE VECTOR
+# i  b(i)
+  1   1
+  2   2
+  3   18 ;
+
+param n := 5; # NUMBER OF COLUMNS
+
+param c :=    # OBJECTIVE VECTOR
+# j  c(j)
+  1  16 
+  2  7
+  3  20
+  4  10
+  5  4;
+
+param a:       1  2  3  4  5  6 := # CONSTRAINT MATRIX
+# a(i,j):
+         1     1  -1 0  -1 0  0
+         2     0  -4 2  2  0  0
+         3     0  -9 0  6  3  0
+	 4     0  -1 -1 0  0  1;
