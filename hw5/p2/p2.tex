@@ -1,7 +1,11 @@
 \section{Exercise 5.2 Complementary Slackness}
 \textbf{Problem:} 
 
-\textbf{Solution:} The goal of the solution is to construct an example in which the standard-form problem (P) has an optimal solution $\hat{x}$ and there exists $\hat{y}$ that is not feasible in its dual dual (D) and is complementary to $\hat{x}$. In this example, there exists multiple $\hat{y}$ that are complementary to $\hat{x}$, yet not all of them are feasible.  Let's first take a look at the definition of \textbf{complementarity}.
+\textbf{Solution:} The goal of the solution is to construct an example in which the standard-form problem (P) has an optimal solution $\hat{x}$ and there exists $\hat{y}$ that is not feasible in its dual dual (D) and is complementary to $\hat{x}$. In this example, there exists multiple $\hat{y}$ that are complementary to $\hat{x}$, yet not all of them are feasible. 
+
+If $b=\mathbf{0}$, then $\hat{x}_\beta = A_\beta^{-1}b = \mathbf{0}$. In this case, it's very easy to find a $\hat{y}$ that is complementary to $\hat{x}$ and the $\hat{y}$ is not a feasible solution of (D). However, we'd like to explore a general case where $b\neq\mathbf{0}$.
+
+Let's first take a look at the definition of \textbf{complementarity}.
 
 \newtheorem{mydef}{\emph{\textbf{Definition}}}
 \begin{mydef}
@@ -31,19 +35,21 @@ $$(c_{\beta_j}-\hat{y}'A_{\cdot \beta_j})\hat{x}_{\beta_j} = 0~, \text{for}~j=1,
 
 Given that $\hat{y}$ is m by 1, if none of the $\hat{x}_{\beta_j}, \text{for}~j=1,2,...,m$ is zero, there is unique $\hat{y}$ complementary to $\hat{x}$, which is also the feasible solution of (D). However, if there exists $\hat{x}_{\beta_j}$ that equals zero, there are more than one $\hat{y}$ that complementary to $\hat{x}$, and it is possible to construct one of the $\hat{y}$ to be not feasible of (D) as we can add one more constraint of $c_{\beta_j}-\hat{y}'A_{\cdot \beta_j} < 0$ so that $\hat{y}'A_{\cdot \beta_j} > c_{\beta_j}$ for $\beta_j$ that $\hat{x}_{\beta_j} = 0$. In this way, $\hat{y}'A \leq c'$ does not hold and $\hat{y}$ is not a feasible solution of (D).
 
-To construct an problem (P) with optimal solution $\hat{x}$ such that $\hat{x}_{\beta_j} = 0$ for some $j$, we leverage the geometric explanation of basic and nonbasic variables. Suppose $(\beta, \eta)$ is the partition for the optimal solution, then on the space of nonbasic variables, for the projection of the lines $\left(A_\beta^{-1}A_\eta\right)x_\eta = A_\beta^{-1}b$, there exists one line that is across the origin $(0,0)$. The algebraic explanation of this is that there exists $\hat{x}_{\beta_j} = 0$ for the basic variable. We leverage this observation to construct the example. We first construct an standard-form problem (P) with $m=3$ and $n=5$ and found the optimal solution through {\tt AMPL}:
+To construct an problem (P) with optimal solution $\hat{x}$ such that $\hat{x}_{\beta_j} = 0$ for some $j$, we leverage the geometric explanation of basic and nonbasic variables. Suppose $(\beta, \eta)$ is the partition for the optimal solution, then on the space of nonbasic variables, for the projection of the lines $\left(A_\beta^{-1}A_\eta\right)x_\eta = A_\beta^{-1}b$, there exists one line that is across the origin $(0,0)$. The algebraic explanation of this is that there exists $\hat{x}_{\beta_j} = 0$ for the basic variable.
+
+We leverage this observation to construct the example. We first construct an standard-form problem (P) with $m=3$ and $n=5$ and found the optimal solution through {\tt AMPL}:
 
 \[
-\begin{array}{ccl}
-\tilde{A} & := & \left(
+\begin{array}{ccc}
+\tilde{A}  :=  \left(
   \begin{array}{ccccc}
     1 & -1 & 0 & -1 & 0  \\
     0 & -4 & 2 & 2 & 0 \\
     0 & -9 & 0 & 6 & 3\\
   \end{array}
-\right)~, \\
-\tilde{b} & := & (1,2,18)'~,\\
-\tilde{c} & := & (16, 7, 20, 10, 4)'~.\\
+\right)~, &
+\tilde{b}  :=  (1,2,18)'~,&
+\tilde{c}  :=  (16, 7, 20, 10, 4)'~.\\
 
 \end{array}
 \]
@@ -123,7 +129,7 @@ A_\beta^{-1}b  =  \left(
 \caption{Feasible region projected into the space of $(x_2,x_3)$ with $A,c,b$}\label{fig:p12}
 \end{figure}
 
-We then solve $A_\eta$ and $b$ from the above equations and get A:
+We then solve $A_\eta$ and $b$ from the above equations and get $A$:
 
 \[
 \begin{array}{cccc}

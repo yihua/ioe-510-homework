@@ -1,5 +1,67 @@
-\section{Exercise 5.1 Duality and complementarity with AMPL}
+\section{Exercise 5.1 Duality and complementarity with {\tt AMPL}}
 \textbf{Problem:} 
 
-\textbf{Solution:}
+\textbf{Solution:} Consider the standard-form problem (P) 
 
+\[
+\tag{P}
+\begin{array}{rrcl}
+ \min & c'x  &      &   \\
+      &  Ax  &   =  & b~; \\
+      &   x  & \geq & \mathbf{0}~,
+\end{array}
+\]
+
+and its dual (D)
+
+\[
+\begin{array}{rrcl}
+ \max & y'b  &      &   \\
+      &  y'A  &   \leq  & c'~.
+\end{array}
+\tag{D}
+\]
+
+Suppose
+
+\[
+\begin{array}{ccc}
+A  :=  \left(
+  \begin{array}{cccccc}
+    1 & -1 & 0 & -1 & 0 & 0 \\
+    0 & -4 & 2 & 2 & 0 & 0 \\
+    0 & -9 & 0 & 6 & 3 & 0 \\
+    0 & -16 & 0 & -4 & 0 & 4 \\
+  \end{array}
+\right)~, &
+b  :=  (1,2,18,-8)'~, &
+c  :=  (16, 7, 20, 10, 4, 6)'~.\\
+\end{array}
+\]
+As we confirm, $\hat{x} = (2.5,1/6,0,4/3,23/6,0)'$ is feasible in (P) and $\hat{y} = (12,10,4/3,3/2)'$ is feasible in (D). Comparing the objective value
+
+$$c'\hat{x} = 419/6 \geq \hat{y}'b = 44~.$$
+
+This illustrates the \textbf{Weak Duality Theorem}.
+
+For $$\beta = (1, 2, 4, 5)'$$ which is a feasible basis and reduced cost $\bar{c}_\eta = (83/6,107/6)' \geq \mathbf{0}$, the primal solution 
+
+$$\bar{x} = (2.5,1/6,0,4/3,23/6,0)'$$
+and the dual solution $$\bar{y} = (16,37/12,4/3,-71/24)'$$ associated with $\beta$ are optimal, which is the case, illustrating the \textbf{Weak Optimal Basis Theorem}.
+
+As we can see above, (P) has a feasible solution and (P) is not unbounded. There exists a basis $$\beta = (1, 2, 4, 5)'$$ such that the associated basic solution $\bar{x} = (2.5,1/6,0,4/3,23/6,0)'$ and the associated dual solution $\bar{y} = (16,37/12,4/3,-71/24)'$ are optimal. $c'\hat{x} = 419/6 = \hat{y}'b.$ This illustrates the \textbf{Strong Optimal Basis Theorem}.
+
+It is also true for (P) ((P) has a feasible solution and (P) is not unbounded) that there exist feasible solutions $\hat{x}=(2.5,1/6,0,4/3,23/6,0)'$ for (P) and $\hat{y}=(16,37/12,4/3,-71/24)'$ for (D) that are optimal. Moreover,  $c'\hat{x} = 419/6 = \hat{y}'b.$ This illustrates the \textbf{Strong Duality Theorem}.
+
+Given solution  $\hat{x}=(2.5,1/6,0,4/3,23/6,0)'$ for (P) and $\hat{y}=(16,37/12,4/3,-71/24)'$ for (D), $\hat{x}$ and $\hat{y}$ are \textbf{complementary} as
+
+\[
+\begin{array}{rccl}
+ (c_j-\hat{y}'A_{\cdot j})\hat{x}_j &  = & 0~,& \text{for}~j=1,2,...,n ~; \\
+ \hat{y}_i(A_{i\cdot}\hat{x}-b_i) & = & 0~, & \text{for}~i=1,2,...,m ~.
+\end{array}
+\]
+
+This also illustrates \textbf{Theorem 5.4} as $\hat{x}$ is a basic solution of (P), $\hat{y}$ is the associated dual solution, and they are complementary. We can also see that (\textbf{Theorem 5.5}) if $\hat{x}$ and $\hat{y}$ are compkementary with respect to (P) and (D), then $c'\hat{x} = 419/6 = \hat{y}'b~.$ The slackness of constraints are also zero.
+
+$\hat{x}$ and $\hat{y}$ are optimal from {\tt AMPL}. We can see that $\hat{x}$ and $\hat{y}$ are feasible and complementary with respect to (P) and (D), which illustrates the \textbf{Weak Complementary Slackness Theorem}. Finally, for \textbf{Strong Complementary Slackness Theorem},$\hat{x}$ and $\hat{y}$ are optimal for (P) and (D), then $\hat{x}$ and $\hat{y}$ are complementary, which is true.
