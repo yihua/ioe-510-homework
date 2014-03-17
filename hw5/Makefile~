@@ -6,17 +6,21 @@ pdf: hw5.pdf
 
 ps: hw5.ps
 
-hw4.blg: $(SRCS)
+hw5.blg: $(SRCS)
 	latex hw5
 	latex hw5
 
-hw4.dvi: $(SRCS) hw5.blg
+hw5.dvi: $(SRCS) hw5.blg
 	latex hw5
 
-hw4.ps: hw5.dvi
-	dvips -Ppdf -t letter -D 1200 -G1 hw5.dvi
+hw5.ps: hw5.dvi
+	dvips hw5.dvi
 
-hw4.pdf: hw5.ps
+
+#	dvips -Ppdf -t letter -D 1200 -G1 hw5.dvi
+        
+
+hw5.pdf: hw5.ps
 	ps2pdf14 hw5.ps hw5.pdf
 
 clean: 

@@ -14,7 +14,10 @@ hw5.dvi: $(SRCS) hw5.blg
 	latex hw5
 
 hw5.ps: hw5.dvi
-	dvips -Ppdf -t letter -D 1200 -G1 hw5.dvi
+	dvips hw5.dvi
+
+#	dvips -Ppdf -t letter -D 1200 -G1 hw5.dvi
+        
 
 hw5.pdf: hw5.ps
 	ps2pdf14 hw5.ps hw5.pdf
