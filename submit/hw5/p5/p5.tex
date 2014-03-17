@@ -1,0 +1,81 @@
+\section{Exercise 5.5 A General Theorem of the Alternative}
+\textbf{Problem:} State and prove a ``Theorem of the Alternative'' for the system:
+\begin{equation}
+\label{eq: general_alt1}
+  \begin{array}{lrcll}
+    & A^G_Px_P + A^G_Nx_N + A^G_Ux_U \geq b^G;\\
+    & A^L_Px_P + A^L_Nx_N + A^L_Ux_U \leq b^L;\\
+    & A^E_Px_P + A^E_Nx_N + A^E_Ux_U = b^E;\\
+    & x_P\geq0, x_N\leq0.
+  \end{array}
+\end{equation}
+\textbf{Solution:}
+We first state the alternative of system (\ref{eq: general_alt1}) as follows,
+\begin{equation}
+\label{eq: general_alt2}
+  \begin{array}{lrcll}
+    & y'_Gb^G +y'_Lb^L + y'_Eb^E >0; \\ 
+    & y'_GA^G_P + y'_LA^L_P + y'_EA^E_P \leq 0;\\
+    & y'_GA^G_N + y'_LA^L_N + y'_EA^E_N \geq 0;\\
+    & y'_GA^G_U + y'_LA^L_U + y'_EA^E_U = 0;\\
+    & y'_G\geq0, y'_L\leq0.
+  \end{array}
+\end{equation}
+
+Then we state the ``Theorem of the Alternative'' for the system (\ref{eq: general_alt1}) and (\ref{eq: general_alt2}),
+\begin{thm}
+Let $A^G_P$, $A^G_N$, $A^G_U$, $A^L_P$, $A^L_N$, $A^L_U$, $A^E_P$, $A^E_N$, $A^E_U$, $b^G$, $b^L$, and $b^E$ be given. Then exactly one the the system (\ref{eq: general_alt1}) and (\ref{eq: general_alt2}) has a solution.
+\end{thm}
+
+To prove the theorem, we first claim that there cannot simultaneously be a solution $\widehat{x}^P$, $\widehat{x}^N$ and $\widehat{x}^U$ to (\ref{eq: general_alt1}) and  $\widehat{y}^G$, $\widehat{y}^L$ and $\widehat{y}^E$ to (\ref{eq: general_alt2}). To see that, we have:
+
+$\because $ $\widehat{y}'_GA^G_P + \widehat{y}'_LA^L_P + \widehat{y}'_EA^E_P \leq 0$, $\widehat{y}'_GA^G_N + \widehat{y}'_LA^L_N + \widehat{y}'_EA^E_N \geq 0$, and $\widehat{y}'_GA^G_U + \widehat{y}'_LA^L_U + \widehat{y}'_EA^E_U = 0$, $\widehat{x}_P\geq0$, $\widehat{x}_N\leq0$
+
+$\therefore $ $\widehat{y}'_GA^G_P\widehat{x}_P + \widehat{y}'_LA^L_P\widehat{x}_P + \widehat{y}'_EA^E_P\widehat{x}_P \leq 0$, $\widehat{y}'_GA^G_N\widehat{x}_N + \widehat{y}'_LA^L_N\widehat{x}_N + \widehat{y}'_EA^E_N\widehat{x}_N \leq 0$, and $\widehat{y}'_GA^G_U\widehat{x}_U + \widehat{y}'_LA^L_U\widehat{x}_U + \widehat{y}'_EA^E_U\widehat{x}_U = 0$
+
+$\therefore $ $\widehat{y}'_GA^G_P\widehat{x}_P + \widehat{y}'_LA^L_P\widehat{x}_P + \widehat{y}'_EA^E_P\widehat{x}_P + \widehat{y}'_GA^G_N\widehat{x}_N + \widehat{y}'_LA^L_N\widehat{x}_N + \widehat{y}'_EA^E_N\widehat{x}_N +\widehat{y}'_GA^G_U\widehat{x}_U + \widehat{y}'_LA^L_U\widehat{x}_U + \widehat{y}'_EA^E_U\widehat{x}_U \leq{} 0$
+
+$\therefore $ $\widehat{y}'_G(A^G_P\widehat{x}_P+A^G_N\widehat{x}_N+A^G_U\widehat{x}_U) + \widehat{y}'_L(A^L_P\widehat{x}_P+A^L_N\widehat{x}_N+A^L_U\widehat{x}_U) + \widehat{y}'_E(A^E_P\widehat{x}_P+A^E_N\widehat{x}_N+A^E_U\widehat{x}_U) \leq{} 0$
+
+$\because $ $A^G_P\widehat{x}_P + A^G_N\widehat{x}_N + A^G_U\widehat{x}_U \geq b^G$, $A^L_P\widehat{x}_P + A^L_N\widehat{x}_N + A^L_U\widehat{x}_U \leq b^L$, $A^E_P\widehat{x}_P + A^E_N\widehat{x}_N + A^E_U\widehat{x}_U = b^E$, and $\widehat{y}'_G\geq0$, $\widehat{y}'_L\leq0$
+
+$\therefore $ $\widehat{y}'_G(A^G_P\widehat{x}_P+A^G_N\widehat{x}_N+A^G_U\widehat{x}_U)  \geq \widehat{y}'_Gb^G$,$\widehat{y}'_L(A^L_P\widehat{x}_P+A^L_N\widehat{x}_N+A^L_U\widehat{x}_U) \geq \widehat{y}'_Lb^L$, and $\widehat{y}'_E(A^E_P\widehat{x}_P+A^E_N\widehat{x}_N+A^E_U\widehat{x}_U) =\widehat{y}'_Eb^E$
+
+$\therefore $ $\widehat{y}'_G(A^G_P\widehat{x}_P+A^G_N\widehat{x}_N+A^G_U\widehat{x}_U) +\widehat{y}'_L(A^L_P\widehat{x}_P+A^L_N\widehat{x}_N+A^L_U\widehat{x}_U)+\widehat{y}'_E(A^E_P\widehat{x}_P+A^E_N\widehat{x}_N+A^E_U\widehat{x}_U)  \geq \widehat{y}'_Gb^G+\widehat{y}'_Lb^L+\widehat{y}'_Eb^E$
+
+$\therefore $ $0\geq{}\widehat{y}'_G(A^G_P\widehat{x}_P+A^G_N\widehat{x}_N+A^G_U\widehat{x}_U) +\widehat{y}'_L(A^L_P\widehat{x}_P+A^L_N\widehat{x}_N+A^L_U\widehat{x}_U)+\widehat{y}'_E(A^E_P\widehat{x}_P+A^E_N\widehat{x}_N+A^E_U\widehat{x}_U)  \geq \widehat{y}'_Gb^G+\widehat{y}'_Lb^L+\widehat{y}'_Eb^E$
+
+$\therefore $ inconsistent with $\widehat{y}'_Gb^G+\widehat{y}'_Lb^L+\widehat{y}'_Eb^E>0$ in (\ref{eq: general_alt2}).
+
+Thus, there cannot simultaneously be a solution to (\ref{eq: general_alt1}) and  (\ref{eq: general_alt2}).
+
+Next, suppose that (\ref{eq: general_alt1}) has no solution. Then the following problem is infeasible:
+\begin{equation}
+\label{eq: primal_p5}
+  \begin{array}{lrcll}
+    \min
+    & \multicolumn{4}{l}{0'x_P+0'x_N+0'x_U} \\
+    \text{s.t.}
+    & A^G_Px_P + A^G_Nx_N + A^G_Ux_U \geq b^G;\\
+    & A^L_Px_P + A^L_Nx_N + A^L_Ux_U \leq b^L;\\
+    & A^E_Px_P + A^E_Nx_N + A^E_Ux_U = b^E;\\
+    & x_P\geq0, x_N\leq0.
+  \end{array}
+\end{equation}
+
+Its dual is
+\begin{equation}
+\label{eq: dual_p5}
+  \begin{array}{lrcll}
+    \max
+    & \multicolumn{4}{l}{y'_Gb^G +y'_Lb^L + y'_Eb^E} \\
+    \text{s.t.}
+    & y'_GA^G_P + y'_LA^L_P + y'_EA^E_P \leq 0;\\
+    & y'_GA^G_N + y'_LA^L_N + y'_EA^E_N \geq 0;\\
+    & y'_GA^G_U + y'_LA^L_U + y'_EA^E_U = 0;\\
+    & y'_G\geq0, y'_L\leq0.
+  \end{array}
+\end{equation}
+
+Since (\ref{eq: primal_p5}) is infeasible, then (\ref{eq: dual_p5}) is either infeasible or unbounded. But $y'_G=0$, $y'_L=0$, $y'_E=0$ is a feasible solution to (\ref{eq: dual_p5}), therefore (\ref{eq: dual_p5}) must be unbounded. Therefore, there exist a feasible solution $\widehat{y}^G$, $\widehat{y}^L$ and $\widehat{y}^E$ to (\ref{eq: general_alt2}) having objective value greater than zero (or even any fixed constant). Such $\widehat{y}^G$, $\widehat{y}^L$ and $\widehat{y}^E$ are a solution to (\ref{eq: general_alt2}).
+\begin{flushright} $\blacksquare$ \end{flushright}

@@ -1,0 +1,70 @@
+\section{Exercise 5.6 Dual Ray}
+\textbf{Problem:} Consider the linear-optimization problem
+\begin{equation}
+\label{eq: primal_p6}
+  \begin{array}{lrcll}
+    \min
+    & \multicolumn{4}{l}{c'x} \\
+    \text{s.t.}
+    & Ax\geq b; \\
+    & x \geq 0.
+  \end{array}
+\end{equation}
+
+a) Suppose that (\ref{eq: primal_p6}) is infeasible. Then, by a `Theorem of the Alternative' there is a
+solution to what system?
+
+b) Suppose, further, that the dual of (\ref{eq: primal_p6}) is feasible. Take a feasible solution $\widehat{y}$ of dual and a solution $\tilde{y}$ to your system of part (a) and combine them appropriately to prove that the dual is unbounded.
+
+\textbf{Solution:}
+
+a) The system for (\ref{eq: primal_p6}) is as follows,
+\begin{equation}
+\label{eq: primal_p6_system}
+  \begin{array}{lrcll}
+    & Ax\geq b; \\
+    & x \geq 0.
+  \end{array}
+\end{equation}
+
+By the `Theorem of the Alternative' the following system has a solution.
+\begin{equation}
+\label{eq: dual_p6_system}
+  \begin{array}{lrcll}
+    & y'b>0; \\
+    & y'A\leq{}0; \\
+    & y'\geq0.
+  \end{array}
+\end{equation}
+
+b) The dual of (\ref{eq: primal_p6}) is as follows,
+\begin{equation}
+\label{eq: dual_p6}
+  \begin{array}{lrcll}
+    \max
+    & \multicolumn{4}{l}{y'b} \\
+    \text{s.t.}
+    & y'A\leq c'; \\
+    & y \geq 0.
+  \end{array}
+\end{equation}
+We combine the feasible solution $\widehat{y}$ for (\ref{eq: dual_p6}) and a solution $\tilde{y}$ to (\ref{eq: dual_p6_system}) to $\overline{y}=\widehat{y}+\alpha\tilde{y}$, $\alpha>0$.
+
+$\because $ $\overline{y}'A=(\widehat{y}+\alpha\tilde{y})'A=\widehat{y}'A+\alpha\tilde{y}'A$, $\tilde{y}'A\leq0$, $\alpha>0$, and $\widehat{y}'A\leq c'$
+
+$\therefore $ $\overline{y}'A\leq{}c'$
+
+$\because $ $\widehat{y}\geq0$, $\tilde{y}\geq0$, $\alpha>0$
+
+$\therefore $ $\overline{y}\geq0$
+
+$\therefore $ $\overline{y}$ is a feasible solution for (\ref{eq: dual_p6})
+
+$\because $ $\overline{y}'b=(\widehat{y}+\alpha\tilde{y})'b=\widehat{y}'b+\alpha\tilde{y}'b$, and $\tilde{y}'b>0$
+
+$\therefore $ When $\alpha\rightarrow +\infty$,  $\overline{y}'b=\widehat{y}'b+\alpha\tilde{y}'b\rightarrow +\infty$
+
+$\therefore $ The dual (\ref{eq: dual_p6}) is unbounded.
+\begin{flushright} $\blacksquare$ \end{flushright}
+
+
