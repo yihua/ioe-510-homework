@@ -29,8 +29,12 @@ for x=-20:0.1:20
     i = i + 1;
 end
 x = -20:0.1:20;
-plot(x,y1,'-b',x,y2,'--r',x,y3,'.g')
-legend('b_1','b_2','b_3')
+set(findobj('FontSize',10),'FontSize',14);
+set(gcf,'color','w');
+plot(x,y1,'-b',x,y2,'--r',x,y3,'-.g', 'LineWidth', 2.5)
+legend('b_1','b_2','b_3', 'Location', 'NorthWest')
+xlabel('b_i')
+ylabel('Objective value of (P)')
 hold on
 xd1 = [-13 -1];
 yd1 = [118 26];
@@ -38,5 +42,5 @@ xd2 = [0 6];
 yd2 = [40 94];
 xd3 = [0 6];
 yd3 = [36 42];
-plot(xd1, yd1, 'bo', xd2, yd2, 'ro', xd3, yd3, 'go')
+plot(xd1, yd1, 'bo', xd2, yd2, 'ro', xd3, yd3, 'go', 'MarkerSize', 6)
 hold off
