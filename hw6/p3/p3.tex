@@ -18,4 +18,53 @@ The point of this problem is to be able to say something about \textit{simultane
 \]
 where $\lambda_i\geq0$, when $\sum^{m}_{i=1} \lambda_i \leq1$. [Note that in the formula above, for each $i$ we can $i=1$ pick either $L_i$ (a decrease) or $U_i$ (an increase)].
 
-\textbf{Solution:} 
+\textbf{Proof:}
+
+Let $D_i=\left\lbrace \begin{array}{c} L_i \\ U_i \end{array}\right\rbrace$, so $\max_{k:h^i_k>0}{-\frac{\overline{b}_k}{h^i_k}}\leq{}D_i\leq{}\min_{k:h^i_k<0}{-\frac{\overline{b}_k}{h^i_k}}$, where  $\overline{b}=A^{-1}_{\beta}b\geq0$, $h^i=A^{-1}_{\beta}e^i$, and $k=1...m$.
+
+Thus, what we need to prove is that the basis $\beta$ is optimal when we simultaneously change $b_i$ to $\tilde{b}_i:=b_i+\lambda_iD_i$, where $\sum^{m}_{i=1}\lambda_i=1$. In the other word, we need to prove that the basis $\beta$ is optimal for (\ref{eq: primalsigmai}), where $\sum^{m}_{i=1}\lambda_i=1$.
+\begin{equation}
+\label{eq: primalsigmai}
+  \begin{array}{lrcll}
+    \min
+    & \multicolumn{4}{l}{c'x} \\
+    \text{s.t.}
+    & Ax=b+\sum^{m}_{i=1}\lambda_i{}D_i{}e^i;\\
+    & x\geq0.
+  \end{array}
+\end{equation}
+
+Consider a fixed and optimal basis $\beta$ for (\ref{eq: primalb}). For $\beta$ to be optimal for (\ref{eq: primalsigmai}), we need $A^{-1}_{\beta}(b+\sum^{m}_{i=1}\lambda_i{}D_i{}e^i)=\overline{b}+\sum^{m}_{i=1}\lambda_i{}D_i{}h^i\geq0$.
+\begin{equation}
+\label{eq: primalb}
+  \begin{array}{lrcll}
+    \min
+    & \multicolumn{4}{l}{c'x} \\
+    \text{s.t.}
+    & Ax=b;\\
+    & x\geq0.
+  \end{array}
+\end{equation}
+
+For $k=1...m$,
+
+$\overline{b}_k+\sum^{m}_{i=1}\lambda_i{}D_i{}h^i_k$
+
+$=\overline{b}_k+\sum^{m}_{i=1,h^i_k>0}\lambda_i{}D_i{}h^i_k+\sum^{m}_{i=1,h^i_k<0}\lambda_i{}D_i{}h^i_k$
+
+$\geq{}\overline{b}_k+\sum^{m}_{i=1,h^i_k>0}\lambda_i{}(\max_{k':h^i_{k'}>0}{-\frac{\overline{b}_{k'}}{h^i_{k'}}})h^i_k+\sum^{m}_{i=1,h^i_k<0}\lambda_i{}(\min_{k':h^i_{k'}<0}{-\frac{\overline{b}_{k'}}{h^i_{k'}}})h^i_k$
+
+$\geq{}\overline{b}_k+\sum^{m}_{i=1,h^i_k>0}\lambda_i{}(-\frac{\overline{b}_k}{h^i_k})h^i_k+\sum^{m}_{i=1,h^i_k<0}\lambda_i{}(-\frac{\overline{b}_k}{h^i_k})h^i_k$
+
+$=\overline{b}_k+\sum^{m}_{i=1,h^i_k>0}\lambda_i{}(-\overline{b}_k)+\sum^{m}_{i=1,h^i_k<0}\lambda_i{}(-\overline{b}_k)$
+
+$=\overline{b}_k+\sum^{m}_{i=1}\lambda_i{}(-\overline{b}_k)$
+
+$=\overline{b}_k+(-\overline{b}_k)\sum^{m}_{i=1}\lambda_i{}$
+
+$\geq\overline{b}_k+(-\overline{b}_k)$
+
+$=0$
+
+Thus, $\overline{b}+\sum^{m}_{i=1}\lambda_i{}D_i{}h^i\geq0$, and $\beta$ is feasible and hence still optimal for (\ref{eq: primalsigmai}).
+\begin{flushright} $\blacksquare$ \end{flushright}
