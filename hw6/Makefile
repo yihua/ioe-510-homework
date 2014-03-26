@@ -1,4 +1,4 @@
-SRCS =  hw6.tex p1/p1.tex p2/p2.tex p4/p4.tex p5/p5.tex p6/p6.tex 
+SRCS =  hw6.tex p1/p1.tex p2/p2.tex p4/p4.tex p5/p5.tex
 
 all: hw6.pdf 
 

@@ -1,4 +1,21 @@
 \section{Exercise 6.3 \emph{``I feel that I know the change that is needed.''} -- Mahatma Gandhi}
-\textbf{Problem:} 
+\textbf{Problem:} We are given $2m$ numbers satisfying $L_i\leq{}0\leq{}U_i$, $i=1,2,...,m$. Let $\beta$ be an optimal basis for all of the $m$ problems
+\begin{equation}
+\label{eq: primali}
+  \begin{array}{lrcll}
+    \min
+    & \multicolumn{4}{l}{c'x} \\
+    \text{s.t.}
+    & Ax=b+\Delta_ie^i;\\
+    & x\geq0.
+  \end{array}
+\end{equation}
+for all $\Delta_i$ satisfying $L_i\leq{}\Delta_i\leq{}U_i$. Let’s be clear on what this means: For each $i$ individually, the basis $\beta$ is optimal when the $i$th right-hand side component is changed from $b_i$ to $b_i+\Delta_i$, as long as $\Delta_i$ is in the interval $[L_i,U_i]$. 
+
+The point of this problem is to be able to say something about \textit{simultaneously} changing all of the $b_i$. Prove that we can simultaneously change $b_i$ to
+\[
+\tilde{b}_i:=b_i+\lambda_i \left\lbrace \begin{array}{c} L_i \\ U_i \end{array}\right\rbrace
+\]
+where $\lambda_i\geq0$, when $\sum^{m}_{i=1} \lambda_i \leq1$. [Note that in the formula above, for each $i$ we can $i=1$ pick either $L_i$ (a decrease) or $U_i$ (an increase)].
 
 \textbf{Solution:} 

@@ -1,4 +1,65 @@
 \section{Exercise 6.4 Domain for objective variations}
-\textbf{Problem:} Prove Theorem 6.4.
+\textbf{Problem:} Prove Theorem 6.4: The domain of $g$ is a convex set.
 
-\textbf{Solution:} 
+\textbf{Proof:} 
+
+Suppose that $c^j$ is in the domain of $g$, for $j=1,2$. Therefore, there exist $x^j$ that are feasible for (\ref{eq: primalcj}), for $j=1,2$.
+\begin{equation}
+\label{eq: primalcj}
+  \begin{array}{lrcll}
+    \min
+    & \multicolumn{4}{l}{{c^j}'x} \\
+    \text{s.t.}
+    & Ax=b;\\
+    & x\geq0.
+  \end{array}
+\end{equation}
+
+For any $0<\lambda<1$, consider $\widehat{c}:=\lambda{}c^1+(1-\lambda)c^2$, to prove the domain of $g$ is a convex set, we need to prove that (\ref{eq: primalc}) is feasible and not unbounded.  
+\begin{equation}
+\label{eq: primalc}
+  \begin{array}{lrcll}
+    \min
+    & \multicolumn{4}{l}{\widehat{c}'x} \\
+    \text{s.t.}
+    & Ax=b;\\
+    & x\geq0.
+  \end{array}
+\end{equation}
+
+Consider $\widehat{x}:=\lambda{}x^1+(1-\lambda)x^2$, 
+
+$\because$ $x^j$ that are feasible for (\ref{eq: primalcj}), for $j=1,2$
+
+$\therefore$ $x^j\geq0$, and $Ax^j=b$, for $j=1,2$
+
+$\therefore$ $A\widehat{x}=A(\lambda{}x^1+(1-\lambda)x^2)=\lambda{}Ax^1+(1-\lambda)Ax^2
+=\lambda{}b+(1-\lambda)b=b$
+
+$\because$ $\lambda>0$
+
+$\therefore$ $\widehat{x}=\lambda{}x^1+(1-\lambda)x^2\geq0$
+
+$\therefore$ $\widehat{x}$ is a feasible solution to (\ref{eq: primalc})
+
+$\therefore$ (\ref{eq: primalc}) is feasible
+
+Consider the objective function $\widehat{c}'x$ of (\ref{eq: primalc}),
+
+$\because$ $c^j$ is in the domain of $g$, for $j=1,2$
+
+$\therefore$ (\ref{eq: primalcj}) is not unbounded for $j=1,2$
+
+$\therefore$ $\exists k^j\in{}\mathbb{R}$, for any $x$, such that ${c^j}'x\geq{}k^j$, for $j=1,2$
+
+$\therefore$ for a feasible solution $\overline{x}$ of (\ref{eq: primalc}), $\widehat{c}'\overline{x}=(\lambda{}c^1+(1-\lambda)c^2)'\overline{x}=\lambda{}{c^1}'\overline{x}
++(1-\lambda){c^2}'\overline{x}\geq{}(\lambda{}k^1+(1-\lambda)k^2)$
+
+$\because$ $k^1,k^2\in{}\mathbb{R}$, $0<\lambda<1$
+
+$\therefore$ (\ref{eq: primalc}) is feasible and not unbounded
+
+$\therefore$ $\widehat{c}$ is in the domain $g$
+
+$\therefore$ the domain of $g$ is a convex set
+\begin{flushright} $\blacksquare$ \end{flushright}

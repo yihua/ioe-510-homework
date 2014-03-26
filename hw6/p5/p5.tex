@@ -1,4 +1,28 @@
 \section{Exercise 6.5 Concave piecewise-linear function}
-\textbf{Problem:} Prove Theorem 6.5.
+\textbf{Problem:} Prove Theorem 6.5: $g$ is a concave piecewise-linear function on its domain.
 
-\textbf{Solution:} 
+\textbf{Proof:}
+ 
+The function $g$ is 
+\begin{equation}
+\label{eq: primali}
+  \begin{array}{lrcll}
+    g(c):=\min
+    & \multicolumn{4}{l}{c'x} \\
+    \text{s.t.}
+    & Ax=b;\\
+    & x\geq0.
+  \end{array}
+\end{equation}
+
+So a basis $\beta$ is feasible or not for (\ref{eq: primali}), independent for $c_{\beta}$. So $g$ can be written as
+\[
+g(c)=\min\left\lbrace{}c'_{\beta}(A^{-1}_{\beta}b): \text{$\beta$ is a feasible basis for (\ref{eq: primali}})\right\rbrace
+\]
+
+$\because $ $c'_{\beta}(A^{-1}_{\beta}b)$ are affine functions
+
+$\therefore$ $g$ is the pointwise minimum of a finite number of affine functions
+
+$\therefore$ $g$ is a concave piecewise-linear function
+\begin{flushright} $\blacksquare$ \end{flushright}
