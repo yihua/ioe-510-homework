@@ -9,3 +9,6 @@ beta = [1,4,5]
 eta = setdiff(1:n,beta); % lazy eta initialization
 
 c(beta)'*inv(A(:,beta))
+inv(A(:,beta))*b
+c(beta)'*inv(A(:,beta))*A -c'
+inv(A(:,beta))

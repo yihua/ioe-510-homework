@@ -30,5 +30,5 @@ display Constraints.up;
 display Constraints.up >> original.out;
 display Constraints.down;
 display Constraints.down >> original.out;
-display x.up;
-display x.down;
+display c.up;
+display c.down;
