@@ -15,12 +15,12 @@ z & := & \min & \tilde{c}'\tilde{x}  &      &   \\
 
 where
 \[
-E  :=  \left(
+\tilde{E}  :=  \left(
   \begin{array}{cccccc}
    4  &   4  &   2  &  13  &  12  &  13 \\
   \end{array}
 \right)~,~
-A  :=  \left(
+\tilde{A}  :=  \left(
   \begin{array}{cccccc}
       14   &  9  &  13  &   2  &   5  &  12 \\
     15   &  1  &   7  &   7   &  9  &  10 \\
@@ -30,7 +30,7 @@ A  :=  \left(
 \[
 h  :=  21~,~
 b  :=  (27,20)'~,~
-c  :=  (5, 4, 8, 2, 10, 3)'~.\\
+\tilde{c}  :=  (5, 4, 8, 2, 10, 3)'~.\\
 \]
 
 This problem can be converted into the equivalent standard-form problem $(P)$ 
@@ -47,7 +47,7 @@ z & := & \min & c'x  &      &   \\
 
 where
 
-$$ E = [\tilde{E}, \mathbf{I}_1]~,~ A = [\tilde{A}, \mathbf{0}], x = (\tilde{x}~s)'. $$
+$$ E = [\tilde{E}, \mathbf{I}_1]~,~ A = [\tilde{A}, \mathbf{0}], x = (\tilde{x}~s)', c=(\tilde{c}', 0)'. $$
 
 We show the basic feasible solutions of $S := \{x\in \mathbb{R}^n~:~Ax=b,x\geq\mathbf{0}\}$ in Table \ref{tab:primal-dual}. There is no basic feasible rays of $S$.
 
