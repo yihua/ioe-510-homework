@@ -1,4 +1,57 @@
-\section{Exercise 7.5}
-\textbf{Problem:} 
+\section{Exercise 7.5 Cutting it closer to reality}
+\textbf{Problem:} Real cutting machines may have a limited number, say $K$, of blades. This means that we can cut at most $K+1$ pieces for patterns that leave no scrap (i.e., $\sum_{i=1}^{m} w_ia_i=W \Rightarrow \sum_{i=1}^{m} a_i \leq K+1$ and at most $K$ pieces for patterns that leave scrap (i.e., $\sum_{i=1}^{m} w_ia_i<W \Rightarrow \sum_{i=1}^{m} a_i \leq K$). Describe how to modify our algorithm for the cutting-stock problem to account for this. Modify the AMPL code that I provided to try this out.
 
 \textbf{Solution:} 
+To account for this problem we now consider two problems at the same time during the step of knapsack subproblem:
+
+\begin{equation}
+\label{eq: kpeq}
+  \begin{array}{lrcll}
+    \max
+    & \multicolumn{4}{l}{\sum_{i=1}^{m} \overline{y}_ia_i} \\
+    \text{s.t.}
+    & \sum_{i=1}^{m} w_ia_i=W;\\
+    & \sum_{i=1}^{m} a_i \leq K+1;\\
+    & a_i\geq0, integer, i=1,..,m
+  \end{array}
+\end{equation}
+
+\begin{equation}
+\label{eq: kpleq}
+  \begin{array}{lrcll}
+    \max
+    & \multicolumn{4}{l}{\sum_{i=1}^{m} \overline{y}_ia_i} \\
+    \text{s.t.}
+    & \sum_{i=1}^{m} w_ia_i<W;\\
+    & \sum_{i=1}^{m} a_i \leq K;\\
+    & a_i\geq0, integer, i=1,..,m
+  \end{array}
+\end{equation}
+
+The AMPL file csp.mod is attached at follows,
+\bigskip
+\hrule 
+\small
+\verbatiminput{p5/csp.mod}
+\normalsize
+\hrule
+\bigskip
+
+The AMPL file csp.run is attached at follows,
+\bigskip
+\hrule 
+\small
+\verbatiminput{p5/csp.run}
+\normalsize
+\hrule
+\bigskip
+
+After setting $K=5$, we got the result:
+
+\bigskip
+\hrule 
+\small
+\verbatiminput{p5/result}
+\normalsize
+\hrule
+\bigskip
