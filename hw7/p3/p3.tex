@@ -1,4 +1,35 @@
-\section{Exercise 7.3}
+\section{Exercise 7.3 Lagrangian value function}
 \textbf{Problem:} 
 
-\textbf{Solution:} 
+\textbf{Solution:} Consider the Lagrangian optimization problem
+
+\[
+\tag{$L_{\hat{y}}$}
+\begin{array}{ccrrcl}
+v(\hat{y}) & := & \hat{y}'h + \min & (c'-\hat{y}'E)x  &      &   \\
+   &&   &  Ax  &   =  & b~; \\
+   &&   &   x  & \geq & \mathbf{0}~.
+\end{array}
+\]
+
+Let $h(\hat{y}) = \min (c'-\hat{y}'E)x $, then $v(\hat{y}) = \hat{y}'h + h(\hat{y})$. When $\hat{y}$ is fixed, the only variables in the minimization are x, so $v(\hat{y})=\min(\hat{y}'h) + h(\hat{y})$.
+
+Let $c^* = c'-\hat{y}'E$, $f(c^*) = \min c^* x = \min (c'-\hat{y}'E)x = h(\hat{y})$. Consider the problem
+\[
+\begin{array}{ccrrcl}
+f(c^*) & := &\min c^*x  &      &   \\
+   &&    Ax  &   =  & b~; \\
+   &&     x  & \geq & \mathbf{0}~.
+\end{array}
+\]
+
+We know from Theorem 6.5 that $f(c^*)$ is a concave piecewise-linear function on its domain, so $h(\hat{y})$ is a concave piecewise-linear function on its domain. So we can write
+
+$$h(\hat{y}) = \min\{ \hat{y}'\alpha_k:k\in K, K \text{~is a finite set}\}.$$
+
+So
+$$ v(\hat{y})= \min (\hat{y}'h) + h(\hat{y}) = \min \{\hat{y}'\alpha_{k'}:k'\in K\cup \{h'\}\}$$
+
+where $\alpha_{h'}=h$.
+
+So $v(\hat{y})$ is a concave piecewise-linear function on its domain.
