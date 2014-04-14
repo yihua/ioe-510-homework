@@ -1,4 +1,44 @@
 \section{Exercise 7.2 Dual solutions}
 \textbf{Problem:} 
 
-\textbf{Solution:} 
+\textbf{Solution:} The dual of (Q) is
+
+\[
+\tag{$Q'$}
+\begin{array}{ccrrcl}
+ \max & y'\left(
+  \begin{array}{c}
+   h\\
+   b
+  \end{array}
+\right)  &      &   \\
+      &  y'\left(
+  \begin{array}{c}
+   E\\
+   A
+  \end{array}
+\right)  &   \leq  & c'~; \\
+\end{array}
+\]
+
+The dual of (M) is
+
+\[
+\tag{$M'$}
+\begin{array}{ccrrcl}
+ \max & \sigma'\left(
+  \begin{array}{c}
+   h\\
+   1
+  \end{array}
+\right)  &      &   \\
+      &  \sigma'\left(
+  \begin{array}{cc}
+   Ex^1,..,Ex^{|J|} & Ez^1,..,Ez^{|K|}\\
+   \mathbf{1}' & \mathbf{0}\\
+  \end{array}
+\right)  &   \leq  & (c'x^1,..,c'x^{|J|},c'z^1,..,c'z^{|K|})~; \\
+\end{array}
+\]
+
+Given the Decompositon Theorem, (Q) and (M) are equivalent, so (Q') and (M') are also equivalent. So the optimal solution in (Q') has a one-to-one corresponding optimal solution in (M'). So they have the same objective value. Similar to the representation theorem for the primal, there is also a representation theorem for the dual. With this representation theorem for the dual, we can also apply it to the optimal solution from (Q') so that we can get the same optimal solution of (M').
