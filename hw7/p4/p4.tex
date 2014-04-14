@@ -98,4 +98,39 @@ Next, we try some other ideas of choosing the step size $\lambda_k$. For these i
 \end{minipage}
 \end{figure}
 
-Compare Figure \ref{fig: ex7_4_k}, Figure \ref{fig: ex7_4_2k}, Figure \ref{fig: ex7_4_2k1}, and Figure \ref{fig: ex7_4_klogk}, we can see that $\lambda_k=\frac{1}{k}$ performs similar to $\lambda_k=\frac{1}{2k}$
+Compare Figure \ref{fig: ex7_4_k}, Figure \ref{fig: ex7_4_2k}, Figure \ref{fig: ex7_4_2k1}, and Figure \ref{fig: ex7_4_klogk}, we can see that $\lambda_k=\frac{1}{k}$ performs similar to $\lambda_k=\frac{1}{2k}$,  while $\lambda_k=\frac{1}{2k+1}$ converges the slowest and is the most unstable one. Among them, $\lambda_k=\frac{1}{(k+1)log(k+1)}$ performs the best, showing a good property of accelerating the convergence.
+
+\begin{table}[!ht]
+\centering
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+$\lambda_k$ & $n$ & $m_1$  & $m_2$ & Dual infeasibility rate \\
+\hline
+$\frac{1}{k}$  & 50 & 15  & 10 & 0.1839 \\
+\hline
+$\frac{1}{k}$  & 100 & 15  & 10 & 2.1201 \\
+\hline
+$\frac{1}{k}$  & 1000 & 15  & 10 & 136.5 \\
+\hline
+$\frac{1}{k}$  & 50 & 25  & 10 & 0 \\
+\hline
+$\frac{1}{k}$  & 50 & 35  & 10 & 0.3204 \\
+\hline
+$\frac{1}{k}$  & 50 & 15  & 20 & 0.0523 \\
+\hline
+$\frac{1}{k}$  & 50 & 15  & 30 & 0.1068 \\
+\hline
+$\frac{1}{2k}$  & 50 & 15  & 10 & 0.1847 \\
+\hline
+$\frac{1}{2k+1}$  & 50 & 15  & 10 & 0.0021 \\
+\hline
+$\frac{1}{(k+1)log(k+1)}$  & 50 & 15  & 10 & 0.0209 \\
+\hline
+\end{tabular}
+\caption{Dual infeasibility rate under different conditions}
+\label{tab: dual_feasible}
+\end{table}
+
+At last, we evaluate how feasible are the $\widehat{y}$ and $\widehat{\pi}$ after solving the Lagrangian dual. From the Subgradient Optimization process we can get $\widehat{y}$, and from MATLAB function \texttt{linprog()} we can get the dual solution $\widehat{\pi}$. For  $\widehat{y}$ and $\widehat{\pi}$ to be feasible, we need to have $\widehat{y}'E+\widehat{\pi}'A \geq c'$, so we calculate $d=c'- (\widehat{y}'E+\widehat{\pi}'A)$, and calculate dual infeasibility rate as $\sum_{d_i < 0} d_i^2 $. The higher the rate, more feasible are $\widehat{y}$ and $\widehat{\pi}$. 
+
+Table \ref{tab: dual_feasible} shows the dual infeasibility rates with different $\lambda_k$, $n$, $m_1$, and $m_2$. From the table, $\widehat{y}$ and $\widehat{\pi}$ are more feasible when the problem becomes larger.
