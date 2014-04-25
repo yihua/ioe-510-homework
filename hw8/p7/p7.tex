@@ -2,3 +2,31 @@
 \textbf{Problem:} Find an \textit{interesting applied problem}, model it as a pure- or mixed-\textit{integer} linear-optimization problem, and test your model with AMPL. Credit will be given for \textit{deft} modeling, \textit{sophisticated} use of AMPL, testing on meaningfully-\textit{large} instances, and \textit{insightful} analysis. Try to play with CPLEX \textit{integer} solver options (they can be set through AMPL) to get better behavior of the solver.
 
 \textbf{Solution:} 
+
+We construct the following problem as an example. Suppose Martin wants to make money and he decides to open several restaurants in the city he lives. There are 4 types of restaurants, 
+\begin{itemize}
+\item Japanese restaurant needs 20 employees each and has a profit of \$ 420.5 per day;
+\item Chinese restaurant needs 17 employees each and has a profit of \$ 325.6 per day;
+\item Italian restaurant needs 27 employees each and has a profit of \$ 507.2 per day;
+\item French restaurant needs 30 employees each and has a profit of \$ 486.3 per day;
+\end{itemize}
+
+Martin would like to open at least 77 restaurants but he only has 813 people to serve in restaurants. For unemployed people, he needs to pay \$ 5.7 per person. The goal is to maximize the profit of all restaurants. 
+
+This is an optimization problem and can be formalized as follows:
+\begin{equation}
+\label{eq: martin}
+  \begin{array}{lrcll}
+    \max
+    & \multicolumn{4}{l}{420.5x_1+325.6x_2+507.2x_3+486.3x_4} \\
+    \text{s.t.}
+    & x_1+x_2+x_3+x_4\geq{}77; \\
+    & 20x_1+17x_2+27x_3+30x_4\leq{}813; \\
+    & x_1 \geq 0 \text{ and integer};\\
+    & x_2 \geq 0 \text{ and integer};\\
+    & x_3 \geq 0 \text{ and integer};\\
+    & x_4 \geq 0 \text{ and integer}.\\
+  \end{array}
+\end{equation}
+
+For the AMPL scripts please see the files in folder p7.

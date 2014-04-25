@@ -1,0 +1,23 @@
+# ex8_7.run 
+#
+reset; # CLEAR FROM ANY PREVIOUS SOLVE
+
+option show_stats 1; # SET AMPL OPTION TO CONTROL OUTPUT
+option presolve 10; # COMMENT OUT TO SOLVE BIGGER MODELS
+option relax_integrality 0; # COMMENT OUT TO SOLVE BIGGER MODELS
+option solver cplex; # AMPL OPTION TO CHOOSE AN AVAILABLE SOLVER
+#option cplex_options 'display=2 presolve=0'; # SETTING SOLVER OPTIONS
+#option cplex_options 'relax_integrality=0 presolve=10'; # SETTING SOLVER OPTIONS
+       # DELETING "presolve=0" MAY HELP TO SOLVE BIGGER MODELS
+
+model ex8_7.mod; # READ IN THE MODEL
+data ex8_7.dat; # READ IN THE DATA AND INSTANTIATE THE MODEL
+solve;  # PASS THE INSTANCE TO THE SOLVER
+
+display totalprofit > ex8_7.out; # WRITE THE OPTIMAL OBJECTIVE VALUE TO A FILE
+                      # NOTE THAT '>' DELETES THE FILE FIRST, IF IT EXISTS
+for {j in COLS}
+  { # USING C−STYLE COMMANDS TO OUTPUT OPTIMAL SOLUTION TO FILE
+    printf "x(%i) = %f\n", j, x[j] >> ex8_7.out;
+                    # NOTE THAT '>>' APPENDS TO THE FILE, IF IT EXISTS
+  };
