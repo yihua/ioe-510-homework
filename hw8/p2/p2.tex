@@ -2,3 +2,59 @@
 \textbf{Problem:} A pivot in an $m\times{}n$ matrix $A$ means choosing a row $i$ and column $j$ with $a_{ij}\neq{}0$, subtracting $\frac{a_{kj}}{a_{ij}}$ times row $i$ from all other rows $k(\neq{}i)$, and then dividing row $i$ by $a_{ij}$. Note that after the pivot, column $j$ becomes the $i$-th standard-unit column. Prove that if $A$ is $TU$, then it is $TU$ after a pivot.
 
 \textbf{Proof:} 
+
+Let $A_p$ be the matrix after applying the pivot to $A$ by choosing a row $i$ and column $j$ with $a_{ij}\neq{}0$. After the pivot, $A^p$ will be something like this:
+$\begin{array}{cc} & j \\ i &  \left( \begin{array}{c|c|c}   & 0 & \\  ... & \vdots & ... \\   & 0 &  \\ \hline  ... & 1 & ... \\ \hline  & 0 &  \\  ... & \vdots & ... \\   & 0 &  \\
+\end{array} \right)  \end{array}$. So our goal is to prove that $A^p$ is also a $TU$ when $A$ is $TU$.
+
+$\because$ $A$ is $TU$, and according to Theorem 8.6 (iii), appending standard-unit columns to $A$ leaves $A$ $TU$
+
+$\therefore$ $A^1=[A,\textbf{I}_m]$ is $TU$
+
+$\therefore$ by definition every square nonsingular submatrix $B$ of $A^1$ has $det(B)=\pm1$
+
+$\therefore$ every square nonsingular submatrix $B$ of $A^1$ is unimodular
+
+$\because$ every basis matrix of $A^1$ is square nonsingular submatrix
+
+$\therefore$ every basis matrix of $A^1$ is unimodular
+
+Then we apply the $a_{ij}$ pivot to $A^1$, and get $A^2=\left( \begin{array}{cc} A^p & D \end{array}\right)$, where $D$ will be something like this: $\begin{array}{cc} & i \\ i &  \left( \begin{array}{c|c|c} \textbf{I}_{i-1} & \vdots & 0 \\  \hline  0 & 1 & 0 \\ \hline  0 & \vdots & \textbf{I}_{m-i} \end{array} \right)  \end{array}$.
+
+$\because$ the pivot is an elementary row operation on the basis matrix of $A^1$
+
+$\therefore$ every basis matrix of $A^1$ and the corresponding basis matrix of $A^2$ using the same basis have the same determinant value
+
+$\therefore$ every basis matrix of $A^2$ is also unimodular
+
+We switch the $j$-th column of $A^p$ and the $i$-th column of $D$ in $A^2$. $A_j=e^i$, so $D$ become $\textbf{I}_m$, and $A^p$ becomes $\left(\begin{array}{ccccccc} A_1 & ... & A_{j-1} & D_i & A_{j+1} & ... & A_n \end{array}\right)$. 
+
+Now we consider the matrix $A^3=\left( \begin{array}{cc} A^q & \textbf{I}_m \end{array}\right)$, where $A^q=\left(\begin{array}{cccccc} A_1 & ... & A_{j-1} & A_{j+1} & ... & A_n \end{array}\right)$.
+
+$\because$ $A^3$ consists of all columns in $A^2$ except $D_i$
+
+$\therefore$ every basis matrix of $A^3$ is also basis matrix of $A^2$
+
+$\therefore$ every basis matrix of $A^3$ is unimodular
+
+$\therefore$ using Theorem 8.5, $A^q$ is $TU$
+
+$\therefore$ $A^{q1}=\left(\begin{array}{ccccccc} A_1 & ... & A_{j-1} & A_{j+1} & ... & A_n & e^i \end{array}\right)$ is also $TU$ using Theorem 8.6 (iii)
+
+$\because$ $A_j=e^i$
+
+$\therefore$  $A^{q1}=\left(\begin{array}{ccccccc} A_1 & ... & A_{j-1} & A_{j+1} & ... & A_n & A_j \end{array}\right)$ is $TU$
+
+Note that by switching columns of $A^{q1}$, we can get $A^p$. So if switching columns does not change the $TU$ property, $A^p$ is then proved to be $TU$. So next we prove that switching columns does not change the $TU$ property.
+
+
+For $TU$ matrix $A=\left(\begin{array}{ccccccc} A_1 & ... & A_i & ... & A_j & ... & A_n \end{array}\right)$, suppose that we switch column $A_i$ and $A_j$ and get $A^1$. For a square nonsingular submatrix $B^1$ of $A^1$, there are 3 cases:
+\begin{enumerate}
+\item $B^1$ does not have any overlap with column $i$ or $j$ in $A^1$. So after the switching, $B^1$ also has the same determinant value as in $A$, thus $det(B^1)=\pm1$;
+\item $B^1$ has overlap with one of column $i$ or $j$ in $A^1$. Let's say with column $i$ in $A^1$. Suppose $B^1$ is a $r\times{}r$ matrix and column $m$ of $B^1$ overlaps with column $i$ of $A^1$, so $B^1_m$ was in column $j$ of $A$. So $B^1$ can be obtained by switching several columns of $A$'s square submatrix $B=\left(\begin{array}{ccccccc} B^1_1 & ... & B^1_{m-1} & B^1_{m+1} & ... & B^1_r & B^1_{m} \end{array}\right)$. Since $B^1$ is nonsingular and $B$ just changes the order of columns compared to $B^1$, $B$ is also nonsingular. Considering that $A$ is $TU$,  $det(B)=\pm1$. So $det(B^1)=(-1)^sdet(B)=(-1)^s(\pm1)=\pm1$, where $s$ is the time of switching.
+\item $B^1$ has overlap with both column $i$ and $j$ in $A^1$. So $B_1$ can be obtained by switching two columns of a nonsingular submatrix $B$ in $A$.Thus, $det(B^1)=\pm1$.
+\end{enumerate}
+Thus, for all square nonsingular matrix $B^1$ of $A^1$, $det(B^1)=\pm1$, which means that all of them are unimodular. So we just prove that switching two columns of $TU$ matrix $A$ still results in a $TU$ matrix.
+
+Thus, after switching columns of $TU$ matrix $A^{q1}$, we get $A^p$, which is also a $TU$ matrix.
+\begin{flushright} $\blacksquare$ \end{flushright}
