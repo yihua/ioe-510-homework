@@ -1,0 +1,92 @@
+\section{Exercise 8.1 Task scheduling, continued}
+\textbf{Problem:} Consider again the ``task scheduling'' Exercise 2.4. Take the dual of the linear-optimization problem that you formulated. Explain how this dual can be interpreted as a kind of network problem. Using {\tt AMPL}, solve the dual of the example that you created for Exercise
+2.4 and interpret the solution.
+
+\textbf{Solution:} Let $p_{i,j}$ represent the precedence matrix, i.e.
+
+\begin{eqnarray}
+p_{i,j} =
+\begin{cases}
+1,   & \text{if job $j$ precedes job $i$}; \\
+0,   & \text{otherwise}. \\
+\end{cases}
+\end{eqnarray}
+
+Then the task scheduling problem can be formulated mathematically as follows:
+
+\[
+\tag{P'}
+\begin{array}{rrcll}
+ \min & t_{n+1}  &  &   & \\
+      &  p_{i,j}(t_j + d_j)  &   \leq  & t_i, & \text{for~} p_{i,j} =1; \\
+      &  t_0 & = & 0~, & \\
+      &  t_i & \geq & 0, & \forall i~.
+\end{array}
+\]
+
+Let $m$ be the nunmber of pair $(i,j)$ such that $p_{i,j} =1$. Transfering (P') into the standard-form problem (P):
+
+\[
+\tag{P}
+\begin{array}{rrcll}
+ \min & t_{n+1}  &  &   & \\
+      &  t_i - t_j - s_k   &   =  & d_j, & \text{for~} p_{i,j} =1; \\
+      &  t_0 & = & 0~, & \\
+      &  t_i & \geq & 0, & \forall i~, \\
+	 &  s_k & \geq & 0, & \forall k~,
+\end{array}
+\]
+
+which is in standard form of the following
+
+\[
+\tag{P}
+\begin{array}{rrcl}
+ \min & c'x  &      &   \\
+      &  Ax  &   =  & b~; \\
+      &   x  & \geq & \mathbf{0}~,
+\end{array}
+\]
+
+where
+
+$$
+
+x = \left(
+  \begin{array}{cccc}
+    0 & \cdots & 0 & 0 \\
+  \end{array}
+\right)',~
+c = 
+\left(
+  \begin{array}{c}
+    -100 \\
+    -300 \\
+    0 \\
+    0 \\
+  \end{array}
+\right),~
+A = 
+\left(
+  \begin{array}{cccc}
+    1 & 1 & -1 & 0 \\
+    10 & 20 & 0 & 1 \\
+  \end{array}
+\right),~
+b =
+\left(
+  \begin{array}{c}
+    10 \\
+    150 \\
+  \end{array}
+\right),~
+x =
+\left(
+  \begin{array}{c}
+    x_1 \\
+    x_2 \\
+    t_1 \\
+    t_2 \\
+  \end{array}
+\right).
+$$

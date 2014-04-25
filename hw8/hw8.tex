@@ -1,0 +1,64 @@
+	
+%  LaTeX_Template.tex // J. Lee
+%
+% ----------------------------------------------------------------
+% AMS-LaTeX ************************************************ 
+% **** -----------------------------------------------------------
+\documentclass{amsart}
+\usepackage{color}
+\usepackage{graphicx,amsmath,amsthm,subfig}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\usepackage{verbatim}
+\usepackage[a4paper,text={16.5cm,25.2cm},centering]{geometry}
+\usepackage[table]{xcolor}
+% ----------------------------------------------------------------
+\vfuzz2pt % Don't report over-full v-boxes if over-edge is small
+\hfuzz2pt % Don't report over-full h-boxes if over-edge is small
+% THEOREMS -------------------------------------------------------
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\theoremstyle{remark}
+\newtheorem{rem}[thm]{Remark}
+\numberwithin{equation}{section}
+% MATH -----------------------------------------------------------
+\newcommand{\Real}{\mathbb R}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\To}{\longrightarrow}
+\newcommand{\BX}{\mathbf{B}(X)}
+\newcommand{\A}{\mathcal{A}}
+% ----------------------------------------------------------------
+\begin{document}
+
+\title{Homework \#8 Solution}
+	
+\date{\today}
+
+\maketitle
+
+ \href{mailto:yhguo@umich.edu,alfchen@umich.edu,mtianyi@umich.edu}
+{Yihua Guo (yhguo@umich.edu), 
+Qi Chen (alfchen@umich.edu),
+Tianyi Ma (mtianyi@umich.edu)}
+
+\bigskip
+
+% ----------------------------------------------------------------
+
+\input{p1/p1.tex}
+\input{p2/p2.tex}
+\input{p3/p3.tex}
+\input{p4/p4.tex}
+\input{p5/p5.tex}
+\input{p6/p6.tex}
+
+% ----------------------------------------------------------------
+
+\end{document}
+% ----------------------------------------------------------------
+
+
