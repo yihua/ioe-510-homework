@@ -21,4 +21,68 @@ $\sum_{i=1}^{n-1} y_i=1$).
 
 \textbf{Solution:} 
 
-When we have $y_i\in\lbrace0,1\rbrace$, the alternative formulation (\ref{eq: altsystem}) is equivalent to formulation (\ref{eq: orisystem}). In (\ref{eq: orisystem}), the formulation means that if $y_k$ is 1, for some $k$ ($1\leq{}k\leq{}n$), and necessarily all of the other $y_j$ are 0, then only $\lambda_k$ and $\lambda_{k+1}$ can be positive. It is easy to see that in (\ref{eq: altsystem}), the meaning is the same: if $y_k$ is 1, $ \sum_{i=1}^{k} y_i=1\leq{}\sum_{i=1}^{k+1} \lambda_i$, and $\sum_{i=k}^{n-1} y_i=1\leq{}\sum_{i=k}^{n} \lambda_i$, so considering that $\sum_{i=1}^{n} \lambda_i=1$, thus $\sum_{i=1}^{k+1} \lambda_i=\sum_{i=k}^{n} \lambda_i=1$, thus $\lambda_k + \lambda_{k+1}=\sum_{i=1}^{k+1} \lambda_i - (\sum_{i=1}^{n} \lambda_i-\sum_{i=k}^{n} \lambda_i)=1-(1-1)=1$
+When we have $y_i\in\lbrace0,1\rbrace$, the alternative formulation (\ref{eq: altsystem}) is equivalent to formulation (\ref{eq: orisystem}). In (\ref{eq: orisystem}), the formulation means that if $y_k$ is 1, for some $k$ ($1\leq{}k\leq{}n$), and necessarily all of the other $y_j$ are 0, then only $\lambda_k$ and $\lambda_{k+1}$ can be positive. It is easy to see that in (\ref{eq: altsystem}), the meaning is the same: if $y_k$ is 1, $ \sum_{i=1}^{k} y_i=1\leq{}\sum_{i=1}^{k+1} \lambda_i$, and $\sum_{i=k}^{n-1} y_i=1\leq{}\sum_{i=k}^{n} \lambda_i$, so considering that $\sum_{i=1}^{n} \lambda_i=1$, thus $\sum_{i=1}^{k+1} \lambda_i=\sum_{i=k}^{n} \lambda_i=1$, thus $\lambda_k + \lambda_{k+1}=\sum_{i=1}^{k+1} \lambda_i - (\sum_{i=1}^{n} \lambda_i-\sum_{i=k}^{n} \lambda_i)=1-(1-1)=1$, thus only $\lambda_k$ and $\lambda_{k+1}$ can be positive. 
+
+After continuous relaxations, the alternative formulation (\ref{eq: altsystem}) and formulation (\ref{eq: orisystem}) are no longer equivalent. In fact, the solution set of (\ref{eq: altsystem}) is contained in the solution set of (\ref{eq: orisystem}). Next, we will first prove that every inequality of (\ref{eq: orisystem}) is a nonnegative linear combination of the inequalities of (\ref{eq: altsystem}), and there exists a solution of (\ref{eq: orisystem}) that is not a solution of (\ref{eq: altsystem}).
+
+We first prove that every inequality of (\ref{eq: orisystem}) is a nonnegative linear combination of the inequalities of (\ref{eq: altsystem}). 
+
+For the inequality $\lambda_1\leq{}y_1$ of  (\ref{eq: orisystem}), we let $j=2$ in the 2nd inequality of (\ref{eq: altsystem}), so we have:
+
+$\sum_{i=2}^{n-1} y_i\leq{}\sum_{i=2}^{n} \lambda_i$
+
+$\Rightarrow$ $\sum_{i=1}^{n-1} y_i - y_1\leq{}\sum_{i=1}^{n} \lambda_i - \lambda_1$
+
+$\Rightarrow$ $1 - y_1\leq{}1 - \lambda_1$
+
+$\Rightarrow$ $y_1\geq{}\lambda_1$
+
+For the inequality $\lambda_n\leq{}y_{n-1}$ of  (\ref{eq: orisystem}), we let $j=n-2$ in the 1st inequality of (\ref{eq: altsystem}), so we have:
+
+$\sum_{i=1}^{n-2} y_i\leq{}\sum_{i=1}^{n-1} \lambda_i$
+
+$\Rightarrow$ $\sum_{i=1}^{n-1} y_i - y_{n-1}\leq{}\sum_{i=1}^{n} \lambda_i - \lambda_n$
+
+$\Rightarrow$ $1 - y_{n-1}\leq{}1 - \lambda_n$
+
+$\Rightarrow$ $y_{n-1}\geq{} \lambda_n$
+
+For the inequality $\lambda_j\leq{}y_{j-1}+y_j, \text{for } j=2,...,n-1$ of  (\ref{eq: orisystem}), we reform the 1st inequality of (\ref{eq: altsystem}) to  $\sum_{i=1}^{j-2} y_i\leq{}\sum_{i=1}^{j-1} \lambda_i, \text{for} j=3,...,n$ and the 2nd inequality of (\ref{eq: altsystem}) to  $\sum_{i=j+1}^{n-1} y_i\leq{}\sum_{i=j+1}^{n} \lambda_i, \text{for} j=1,...,n-2$, and add them as follows:
+
+$\sum_{i=1}^{j-2} y_i+\sum_{i=j+1}^{n-1} y_i\leq{}\sum_{i=1}^{j-1}\lambda_i+\sum_{i=j+1}^{n} \lambda_i$
+
+$\Rightarrow$ $\sum_{i=1}^{n-1} y_i-y_{j-1}-y_j\leq{}\sum_{i=1}^{n}\lambda_i-\lambda_j$
+
+$\Rightarrow$ $1-y_{j-1}-y_j\leq{}1-\lambda_j$
+
+$\Rightarrow$ $y_{j-1}+y_j\geq{}\lambda_j$
+
+Thus, every inequality of (\ref{eq: orisystem}) is a nonnegative linear combination of the inequalities of (\ref{eq: altsystem}).
+
+Next, we prove that there exists a solution of (\ref{eq: orisystem}) that is not a solution of (\ref{eq: altsystem}).
+
+To construct such situation of (\ref{eq: orisystem}), we choose $y_j=\frac{1}{n-1}, j=1...n-1$. Then for $\lambda_j, j=1...n$, we assign $\lambda_n=\frac{1}{n-1}$, and $\lambda_j=\frac{2}{n-1}$ for $j=n-1$, $j=n-2$,$...$ until $j=m$ in which $(\sum_{j=n-1}^{m} \frac{2}{n-1}) + \frac{1}{n-1}=1$. After than, for $j=1...m-1$,  $\lambda_n=0$. This solution satisfies (\ref{eq: orisystem}). By constructing the solution in this way, when $n\geq4$, one can always find $y_1\leq{}\sum_{i=1}^{2}\lambda_i$, which does not satisfy the 1st equation of (\ref{eq: altsystem}) when $j=1$.
+
+To see that, let's take a look at the case when $n=4$. Table \ref{tab: p5_res} show the $y_j$ and $\lambda_j$ of our constructed solution for (\ref{eq: orisystem}) when $n=4$. It is clear to see that this solution satisfies (\ref{eq: orisystem}), but violates $\sum_{i=1}^{j} y_i\leq{}\sum_{i=1}^{j+1} \lambda_i$ when $j=1$ since $y_1=1/3\geq{}0=\sum_{i=1}^{2}\lambda_i$.
+
+\begin{table}[!ht]
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+$j$ & $y_j$ & $\lambda_j$ \\
+\hline
+1  & 1/3 & 0\\
+\hline
+2  & 1/3 & 0\\
+\hline
+3  & 1/3 & 2/3\\
+\hline
+4  & / & 1/3\\
+\hline
+\end{tabular}
+\caption{$y_j$ and $\lambda_j$ in the constructed solution for (\ref{eq: orisystem}) when $n=4$}
+\label{tab: p5_res}
+\end{table}
+
+Thus, we just prove that every inequality of (\ref{eq: orisystem}) is a nonnegative linear combination of the inequalities of (\ref{eq: altsystem}) and there exists a solution of (\ref{eq: orisystem}) that is not a solution of (\ref{eq: altsystem}), which proves that  the solution set of (\ref{eq: altsystem}) is contained in the solution set of (\ref{eq: orisystem}) when we relax $y_i\in\lbrace0,1\rbrace$ to $0\leq{}y_i\leq1$, for $i=1,...,n−1$. 
+\begin{flushright} $\blacksquare$ \end{flushright}
