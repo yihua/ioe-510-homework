@@ -1,4 +1,33 @@
 \section{Exercise 8.4 Comparing facility-location formulations}
 \textbf{Problem:} We have seen two formulations of the forcing constraints for the uncapacitated facility-location problem. We have a choice of the $mn$ constraints: $−y_{i} + x_{ij} \leq 0$, for $i=1, ..., m$ and $j=1,..., n$, or the $m$ constraints: $−ny_{i}+nx_{ij} \leq 0$, for $i=1,...,m$. Which formulation is stronger? That is, compare (both \textit{computationally} and \textit{analytically}) the strength of the two associated continuous relaxations (i.e., when we relax $y_{i}\in{}\lbrace0,1\rbrace$ to $0\leq{}y_{i}\leq1$, for $i=1,...,m$).  In Appendix A.3, there is AMPL code for trying computational experiments.
 
-\textbf{Solution:} 
+\textbf{Solution:} Consider the choice of the $mn$ constraints:
+
+$$S_1: -y_i+x_{ij}\leq0, \text{for } i=1,...,m \text{ and } j = 1,...,n,$$
+
+and the $m$ constraints:
+
+$$S_2: -ny_i+\sum_{j=1}^n x_{ij}\leq0, \text{for } i=1,...,m.$$
+
+Using {\tt AMPL}, we first random generate parameters for the uncapacitated facility-location problem and using this set of parameters to compare the two set of constraints with integer constraint and continuous relaxations. We omit the parameters here because of limited space. 
+
+For integer programming, $S_1$ and $S_2$ give the same optimal solution with total cost of 456 ($y = (1,0,1,0,1,0,1,0,1,0)'$). $x$ are also exactly the same (we don't show $x$ here as its dimension is large). When considering the continuous relaxation, $S_1$ still gives the same optimal solution, while $S_2$ gives a different optimal solution with the total cost of 301.76 ($y = (0.2,0.12,0.16,0.12,0.16,0.04,0.08,0.08,0.04,0)'$), which is lower than the optimal cost for integer programming. From this example, we see that the formulation of $S_1$ is stronger.
+
+We next prove it analytically. $\forall (x,y) \in S_1 $,
+
+$$ -y_i+x_{ij}\leq0, \text{for } i=1,...,m \text{ and } j = 1,...,n,$$
+
+then,
+
+$$\sum_{j=1}^n (-y_i+x_{ij})\leq0, \text{for } i=1,...,m, $$
+
+which is equivalent to
+
+$$-ny_i+\sum_{j=1}^n x_{ij}\leq0, \text{for } i=1,...,m.$$
+
+Thus $ (x,y) \in S_2 $, so $S_1 \subset S_2$. However, $S_2$ is not contained in $S_1$. It's possible to construct an feasible solution $(x,y)$ for $S_2$, such that,
+
+$$y_1 = \frac{1}{n}, x_{1j}=0, \text{for } j = 1,...,n-1, x_{1n} = \frac{2}{n},$$
+$$y_2 = 1, x_{2j}=1, \text{for } j = 1,...,n-1, x_{2n} = 1-\frac{2}{n}, $$
+
+and other variables is equal to zero. It is obvious that this $(x,y) \notin S_1$ ($-y_1+ x_{1n} =1/n > 0$). So the formulation of $S_1$ is stronger.
