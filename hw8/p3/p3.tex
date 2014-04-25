@@ -30,4 +30,42 @@
 Notice that each system has precisely the same set of integer solutions. Compare the feasible regions $S_i$ of the continuous relaxations, for each pair of these systems. Specifically, for each choice of pair $i=j$, demonstrate whether or not the solution set of $S_i$ is contained in the solution set of $S_j$. HINT: To prove that the solution set of Si is contained in the solution set of $S_j$, it suffices to demonstrate that every inequality of $S_j$ is a nonnegative linear combination of the inequalities of $S_i$. To prove that the solution set of $S_i$ is not contained in the solution set of $S_j$, it suffices to give a solution of $S_i$ that is not a solution of $S_j$.
 
 
-\textbf{Solution:} 
+\textbf{Solution:} Comparing the feasible regions $S_i$ of the continuous relaxations: (1) Comparing $S_1$ and $S_2$. $\forall x \in S_2$, we have
+
+$$ x_1+x_2+x_3\leq 1~,~x_1+x_2+x_4\leq 1~,~-x_j\leq 0. $$
+
+Then,
+
+$$ (x_1+x_2+x_3) + (x_1+x_2+x_4)\leq 1+1,$$
+$$ (x_1+x_2+x_3) + (-x_2) + (-x_3) \leq 1, $$
+$$ (x_1+x_2+x_3) + (-x_1) + (-x_3) \leq 1, $$
+$$ (x_1+x_2+x_3) + (-x_1) + (-x_2) \leq 1, $$
+$$ (x_1+x_2+x_4) + (-x_1) + (-x_2) \leq 1, $$
+$$ -x_j\leq 0, $$
+
+which are equivalent to 
+
+$$ 2x_1+2x_2+x_3+x_4\leq 2~,~ x_j\leq 1~,~-x_j\leq 0.$$
+
+So $x \in S_1$, and $S_2 \subset S_1$. $S_1$ is not contained in $S_2$ because $(0,0.5,1,0)' \in S_1 $ but $(0,0.5,1,0)' \notin S_2$.
+
+(2) Comparing $S_2$ and $S_3$. $\forall x \in S_2$, we have
+
+$$ x_1+x_2+x_3\leq 1~,~x_1+x_2+x_4\leq 1~,~-x_j\leq 0. $$
+
+Then,
+
+$$ (x_1+x_2+x_3) + (-x_3) \leq 1, $$
+$$ (x_1+x_2+x_3) + (-x_2) \leq 1, $$
+$$ (x_1+x_2+x_4) + (-x_2) \leq 1, $$
+$$ (x_1+x_2+x_3) + (-x_1) \leq 1, $$
+$$ (x_1+x_2+x_4) + (-x_1) \leq 1, $$
+$$ -x_j\leq 0, $$
+
+which are equivalent to 
+
+$$ x_1+x_2\leq 1~,~ x_1+x_3\leq 1~,~x_1+x_4\leq 1~,~ x_2+x_3\leq 1~,~x_2+x_4\leq 1~,~ -x_j\leq 0.$$
+
+So $x \in S_3$, and $S_2 \subset S_3$. $S_3$ is not contained in $S_2$ because $(0.5,0.5,0.5,0.5)' \in S_3 $ but $(0.5,0.5,0.5,0.5)' \notin S_2$.
+
+(3) Comparing $S_1$ and $S_3$. $S_3$ is not contained in $S_1$ because $(0.5,0.5,0.5,0.5)' \in S_3 $ but $(0.5,0.5,0.5,0.5)' \notin S_1$. $S_1$ is not contained in $S_3$ because $(0,0.5,1,0)' \in S_1 $ but $(0,0.5,1,0)' \notin S_3$. 
