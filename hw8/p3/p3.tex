@@ -1,4 +1,33 @@
 \section{Exercise 8.3 Comparing formulations for a toy problem}
-\textbf{Problem:} 
+\textbf{Problem:} Consider the systems:
+\begin{equation}
+\label{eq: s1}
+  \begin{array}{lrcll}
+    S_{1}: & 2x_1+2x_2+x_3+x_4\leq 2;\\
+    & x_j\leq 1;\\
+    & -x_j\leq 0.
+  \end{array}
+\end{equation}
+\begin{equation}
+\label{eq: s2}
+  \begin{array}{lrcll}
+    S_{2}: & x_1+x_2+x_3\leq 1;\\
+    & x_1+x_2+x_4\leq 1;\\
+    & -x_j\leq 0.
+  \end{array}
+\end{equation}
+\begin{equation}
+\label{eq: s3}
+  \begin{array}{lrcll}
+    S_{3}: & x_1+x_2\leq 1;\\
+    & x_1+x_3\leq 1;\\
+    & x_1+x_4\leq 1;\\
+    & x_2+x_3\leq 1;\\
+    & x_2+x_4\leq 1;\\
+    & -x_j\leq 0.
+  \end{array}
+\end{equation}
+Notice that each system has precisely the same set of integer solutions. Compare the feasible regions $S_i$ of the continuous relaxations, for each pair of these systems. Specifically, for each choice of pair $i=j$, demonstrate whether or not the solution set of $S_i$ is contained in the solution set of $S_j$. HINT: To prove that the solution set of Si is contained in the solution set of $S_j$, it suffices to demonstrate that every inequality of $S_j$ is a nonnegative linear combination of the inequalities of $S_i$. To prove that the solution set of $S_i$ is not contained in the solution set of $S_j$, it suffices to give a solution of $S_i$ that is not a solution of $S_j$.
+
 
 \textbf{Solution:} 

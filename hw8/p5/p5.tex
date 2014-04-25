@@ -1,4 +1,22 @@
 \section{Exercise 8.5 Comparing piecewise-linear formulations}
-\textbf{Problem:} 
+\textbf{Problem:} We have seen that the adjacency condition for piecewise-linear univariate functions can be modeled by
+\begin{equation}
+\label{eq: orisystem}
+  \begin{array}{lrcll}
+    \lambda_1\leq{}y_1; &\\
+    \lambda_j\leq{}y_{j-1}+y_j, & \text{for } j=2,...,n-1;\\
+    \lambda_n\leq{}y_{n-1}. &
+  \end{array}
+\end{equation}
+An alternative formulation is
+\begin{equation}
+\label{eq: altsystem}
+  \begin{array}{lrcll}
+   \sum_{i=1}^{j} y_i\leq{}\sum_{i=1}^{j+1} \lambda_i, & \text{for} j=1,...,n-2;\\
+   \sum_{i=j}^{n-1} y_i\leq{}\sum_{i=j}^{n} \lambda_i, & \text{for} j=2,...,n-1.\\
+  \end{array}
+\end{equation}
+Explain why this alternative formulation is valid, and compare its strength to the original formulation, when we relax $y_i\in\lbrace0,1\rbrace$ to $0\leq{}y_i\leq1$, for $i=1,...,n−1$. (Note that for both formulations, we require $\lambda_i\geq0$, for $i=1,...,n$, $\sum_{i=1}^{n} \lambda_i=1$, and
+$\sum_{i=1}^{n-1} y_i=1$).
 
 \textbf{Solution:} 
