@@ -1,6 +1,5 @@
 \section{Exercise 8.1 Task scheduling, continued}
-\textbf{Problem:} Consider again the ``task scheduling'' Exercise 2.4. Take the dual of the linear-optimization problem that you formulated. Explain how this dual can be interpreted as a kind of network problem. Using {\tt AMPL}, solve the dual of the example that you created for Exercise
-2.4 and interpret the solution.
+\textbf{Problem:} Consider again the ``task scheduling'' Exercise 2.4. Take the dual of the linear-optimization problem that you formulated. Explain how this dual can be interpreted as a kind of network problem. Using {\tt AMPL}, solve the dual of the example that you created for Exercise 2.4 and interpret the solution.
 
 \textbf{Solution:} Let $p_{i,j}$ represent the precedence matrix, i.e.
 
@@ -48,45 +47,120 @@ which is in standard form of the following
 \end{array}
 \]
 
-where
-
-$$
-
-x = \left(
-  \begin{array}{cccc}
-    0 & \cdots & 0 & 0 \\
+where $$x = \left(
+  \begin{array}{ccccccc}
+    t_0 & \cdots & t_n & t_{n+1} & s_1 & \cdots & s_m \\
+  \end{array}
+\right)',~$$ $$c = \left(
+  \begin{array}{ccccccc}
+    0 & \cdots & 0 & 1 & 0 & \cdots & 0 \\
   \end{array}
 \right)',~
-c = 
-\left(
-  \begin{array}{c}
-    -100 \\
-    -300 \\
-    0 \\
-    0 \\
-  \end{array}
-\right),~
-A = 
-\left(
+$$ $$
+b = \left(
   \begin{array}{cccc}
-    1 & 1 & -1 & 0 \\
-    10 & 20 & 0 & 1 \\
+    b_1 & \cdots & b_m & 0 \\
   \end{array}
-\right),~
-b =
-\left(
-  \begin{array}{c}
-    10 \\
-    150 \\
-  \end{array}
-\right),~
-x =
-\left(
-  \begin{array}{c}
-    x_1 \\
-    x_2 \\
-    t_1 \\
-    t_2 \\
-  \end{array}
-\right).
+\right)',~
 $$
+
+$A$ is a $(m+1)\times (n+m+2)$ matrix. The first $m$ lines of $A$ are parameters for $m$ constraints for $p_{i,j} = 1$, and the last line of $A$ is for $t_0=0$. The dual of (P) is
+
+\[
+\begin{array}{rrcl}
+ \max & y'b  &      &   \\
+      &  y'A  &   \leq  & c'~,
+\end{array}
+\tag{D}
+\]
+
+Let
+
+$$
+y = \left(
+  \begin{array}{cccc}
+    y_1 & \cdots & y_m & y_{m+1} \\
+  \end{array}
+\right)',~
+$$
+
+the objective function can be written as
+
+$$ \sum_{i=1}^m y_i b_i $$
+
+$y'A \leq c'$ represents $(m+n+2)$ constraints. Considering the structure of matrix $A$, the first $(n+1)$ constraints have the following form ($l$ denote the column number of matrix $A$ starting from 0, which also corresponds to $t_0$ to $t_n$)
+
+$$ \sum_{(l,i) \text{ assoc. } j:p_{l,i}=1} y_j - \sum_{(i,l) \text{ assoc. } j:p_{i,l}=1} y_j \leq 0 $$
+
+For the $(n+2)$th constraint (which corresponds to the column of $t_{n+1}$):
+
+$$ \sum_{(n+1,i) \text{ assoc. } j:p_{n+1,i}=1} y_j - \sum_{(i,n+1) \text{ assoc. } j:p_{i,n+1}=1} y_j \leq 1 $$
+
+For last $m$ constraints:
+
+$$-y_i \leq 0. $$
+
+Then the problem (D) is equivalent to 
+
+\[
+\begin{array}{rlcrcll}
+ \max & \sum_{i=1}^m y_i b_i  &  &&    & &  \\
+      &  \sum_{(i,l)\text{ assoc. } j:p_{i,l}=1} y_j  & - & \sum_{(l,i) \text{ assoc. } j:p_{l,i}=1} y_j &  =  & u_l ~,& l=0,...,n,\\
+      &  \sum_{(i,n+1) \text{ assoc. } j:p_{i,n+1}=1} y_j & - & \sum_{(n+1,i) \text{ assoc. } j:p_{n+1,i}=1} y_j & = & u_{n+1}-1~,&\\
+	&&& y_i & \geq & 0, & \\
+	&&& u_j & \geq & 0. & 
+\end{array}
+\tag{D'}
+\]
+
+Based on the task dependency graph, we can actually see that $\sum_{(i,l) \text{ assoc. } j:p_{i,l}=1} y_j$ can be viewed as all the outgoing net flow from node $l$, and $\sum_{(l,i) \text{ assoc. } j:p_{l,i}=1} y_j$ can be viewed as all the incoming net flow to node $l$. The $u_l$ can be viewed as the net supply at node $l$. For node $0$ to $n$, the outgoing net flow, minus the incoming net flow, is equal to the net supply. However, node $n+1$ absorbs the net flow by 1. Each dependency arc has the cost and the objective is to find the possible maximum cost for the flow. This is how the dual can be interpreted as a kind of network problem. The dual actually gives the critical path of the task scheduling problem, the primal. We will next show a concrete example.
+
+Let $n=5$, $m=8$, $d(i=0..5)=(0,2,1,6,4,2)$, 
+
+$$
+(p_{i=0..6,j=0..6}) = \left(
+  \begin{array}{ccccccc}
+     0 & 0 & 0 & 0 & 0 & 0 & 0\\
+	1 & 0 & 0 & 0 & 0 & 0 & 0\\
+	0 & 1 & 0 & 0 & 0 & 0 & 0\\
+	0 & 0 & 1 & 0 & 0 & 0 & 0\\
+	0 & 1 & 0 & 0 & 0 & 0 & 0\\
+	0 & 0 & 0 & 1 & 1 & 0 & 0\\
+	0 & 0 & 0 & 0 & 1 & 1 & 0\\
+  \end{array}
+\right)'.
+$$
+
+The primal has the following constraints for $p_{i,j}=1$ (in the same order for matrix $A$):
+
+\[
+\begin{array}{ccccc}
+	t_1 & - & t_0 & \geq & 0\\
+	t_2 & - & t_1 & \geq & 2\\
+	t_4 & - & t_1 & \geq & 2\\
+	t_3 & - & t_2 & \geq & 1\\
+	t_5 & - & t_3 & \geq & 6\\
+	t_5 & - & t_4 & \geq & 4\\
+	t_6 & - & t_5 & \geq & 2\\
+	t_6 & - & t_4 & \geq & 4\\
+\end{array}
+\]
+
+Then the dual problem (D) 
+
+\[
+\begin{array}{ccccccccccc}
+ \max &     & 2y_2&+2y_3&+y_4&+6y_5&+4y_6&+2y_7&+4y_8 &      & \\
+      & -y_1&     &     &    &     &     &     &      & \leq & 0,\\ 
+      &  y_1& -y_2& -y_3&    &     &     &     &      & \leq & 0,\\ 
+      &     &  y_2&     &-y_4&     &     &     &      & \leq & 0,\\ 
+      &     &     &     & y_4& -y_5&     &     &      & \leq & 0,\\ 
+      &     &     &  y_3&    &     & -y_6&     &  -y_8& \leq & 0,\\ 
+      &     &     &     &    &  y_5& +y_6& -y_7&      & \leq & 0,\\ 
+      &     &     &     &    &     &     &  y_7&  +y_8& \leq & 1,\\ 
+      &  & & &    &     &     &     &    y_i  & \geq & 0.\\ 
+\end{array}
+\tag{D}
+\]
+
+Through {\tt AMPL}, we get the optimal solution for (D): $\hat{y} = (0,1,0,1,1,0,1,0)'$, and the optimal objective value is 11. By examining the constraints, we can see that the `1's in the optimal solution correspond to the following task dependency edge: $(1\to2), (2\to3),(3\to5),(5\to6)$. By comparing this solution to the primal optimal solution, we see that the primal and the dual has the same optimal value, and the dual solution actually indicates the critical path of finishing the task. That is, it indicates the longest necessary path through the network of tasks.
