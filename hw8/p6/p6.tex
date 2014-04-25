@@ -7,4 +7,20 @@ An optimal basis is $\beta:=(1,2,5)$, $\eta:=(3,4)$. Suppose that all of the var
 
 Can you get a stronger (GMI) cut (with respect to this basis) by ignoring the integrality on some variables?
 
-\textbf{Solution:} 
+\textbf{Solution:} The Gom cuts for the given basis are:
+
+$$ \frac{3}{22}x_3 + \frac{21}{22}x_4 \geq 0.5, $$
+$$ \frac{1}{22}x_3 + \frac{7}{22}x_4 \geq 0.5, $$
+$$ \frac{1}{2}x_3 + \frac{1}{2}x_4 \geq 0.5. $$
+
+They strengthen the feasible region for continuous relaxation. The comparison is shown in Figure \ref{fig:p1, fig:p2}.
+
+\begin{figure}[h!!]
+\includegraphics[width=0.5\textwidth]{p6/original.eps}
+\caption{Feasible region projected into the space of $(x_3,x_4)$ (original)}\label{fig:p1}
+\end{figure}
+
+\begin{figure}[h!!]
+\includegraphics[width=0.5\textwidth]{p6/image.eps}
+\caption{Feasible region projected into the space of $(x_3,x_4)$ (Gom cuts)}\label{fig:p2}
+\end{figure}
